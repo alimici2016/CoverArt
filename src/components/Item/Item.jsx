@@ -13,6 +13,10 @@ function Item ({film}) {
         <>
         <p>{film.title}</p>
         <button onClick={handleDelete}>DELETE</button>
+        <div>
+                <button className="button" onClick={() => updateLike(film)}>Like</button>
+                {film.like ? <p><span>{film.like}</span> people love this</p> : <p></p>}
+            </div>
         </>
     )
 }

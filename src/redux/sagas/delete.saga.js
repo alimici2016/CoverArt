@@ -11,14 +11,14 @@ function* deleteMovie (action) {
     }
 };
 
-function* deleteImpression (action) {
-    try{
-      console.log(action.payload)
-      yield axios.delete(`/api/movies/${action.payload.id}`)
-    }catch{
-        yield put ({type: 'DELETE_ERROR'})
-    }
-};
+// function* deleteImpression (action) {
+//     try{
+//       console.log(action.payload)
+//       yield axios.delete(`/api/movies/${action.payload.id}`)
+//     }catch{
+//         yield put ({type: 'DELETE_ERROR'})
+//     }
+// };
 
 function* deleteSaga () {
    yield takeLatest('DELETE_MOVIE', deleteMovie)
