@@ -11,8 +11,12 @@ const {
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
-  const query = `SELECT * FROM movies ORDER BY "title" ASC`;
-  pool.query(query)
+  const query = `SELECT FROM movies
+  WHERE id = $1 AND
+  user_id = $2;
+  `;
+  let values = [id, req.user.id]
+  pool.query(query, values)
     .then(result => {
       res.send(result.rows);
     })
@@ -52,6 +56,8 @@ router.post('/', (req, res) => {
     }).catch(err => {
       console.log('err', err)
     });
-})
+});
+
+
 
 module.exports = router;
