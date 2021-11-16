@@ -5,7 +5,7 @@ function Item ({film}) {
     const dispatch = useDispatch();
 
     const handleDelete = () => {
-        dispatch({ type: 'DELETE_MOVIE', payload: movie })
+        dispatch({ type: 'DELETE_MOVIE', payload: film })
     }
 
 
