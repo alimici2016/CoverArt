@@ -12,11 +12,10 @@ function* addMovie(action) {
     }
 }
 
-
 function* fetchAllMovies() {
     try {
         const movies = yield axios.get('/api/movies');
-        console.log('get all:', movies.data);
+        console.log('get all', movies.data);
         yield put({ type: 'SET_MOVIES', payload: movies.data });
 
     } catch {
