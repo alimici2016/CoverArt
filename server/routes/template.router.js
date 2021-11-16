@@ -34,9 +34,21 @@ router.post('/', (req, res) => {
 
   pool.query(movieQuery, [req.body.title, req.body.genre, req.body.image_url, req.body.like, req.body.director])
     .then(result => {
-      console.log(result.rows)
-      res.sendStatus(201)
+      console.log(result.rows[0].id)
 
+      const createdMovieId = result.rows[0].id
+
+      const movieImpressionQuery = `
+          INSERT INTO "impressions" ("date", "movies_id", "impressions")
+          VALUES  ($1, $2, $3);
+          `;
+      pool.query(movieImpressionQuery, [createdMovieId, req.body.movie_id, req.body.impressions])
+
+        .catch(err => {
+          console.log(err);
+          res.sendStatus(500)
+        })
+      res.sendStatus(201)
     }).catch(err => {
       console.log('err', err)
     });
