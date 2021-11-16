@@ -79,6 +79,29 @@ router.delete('/:id', (req, res) => {
     })
 });
 
+router.delete('/:impressionId', (req, res) => {
+  let id = req.params.impressionId
+
+  console.log(req.params.impressionId);
+
+  let queryText = 
+  `DELETE FROM "impressions"
+  WHERE movies_id = $1 AND
+  id= $2;`;
+
+  let values = [id]
+
+  pool.query(queryText, values)
+    .then(results => {
+      res.sendStatus(204)
+    }).catch(err => {
+      console.log(err)
+      res.sendStatus(500)
+    })
+});
+
+
+
 // router.put('/:id', (req,res) => {
 //   let id = req.params.id
 
