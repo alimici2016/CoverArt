@@ -6,13 +6,12 @@ function AddMovieForm() {
     const dispatch = useDispatch();
 
     const [movie, setMovie] = useState({
-        // date: '',
+        date: '',
         title: '',
         genre: '',
         image_url: '',
-        like: '',
         director: '',
-        impression: '',
+        impressions: '',
     })
 
     const [like, updateLike] = useState()
@@ -28,16 +27,20 @@ function AddMovieForm() {
 
     return (
         <form onSubmit={addMovie}>
+            <input onChange={(event) => handleChange(event, 'date')}
+                type="date"
+                value={movie.date}
+            />
             <input onChange={(event) => handleChange(event, 'title')}
                 placeholder='title'
                 type="text"
                 value={movie.title}
             />
-            <input onChange={(event) => handleChange(event, 'genre')}
+            {/* <input onChange={(event) => handleChange(event, 'genre')}
                 placeholder='genre'
                 type="text"
                 value={movie.genre}
-            />
+            /> */}
             <input onChange={(event) => handleChange(event, 'image_url')}
                 placeholder='image_url'
                 type="text"
@@ -49,17 +52,11 @@ function AddMovieForm() {
                 type="text"
                 value={movie.director}
             />
-            {/* <input onChange={(event) => handleChange(event, '')}
-            type ="text"
-            value={movie.director}
-            /> */}
-            <input onChange={(event) => handleChange(event, 'impression')}
+            <input onChange={(event) => handleChange(event, 'impressions')}
                 placeholder='impression'
                 type="text"
-                value={movie.impression}
+                value={movie.impressions}
             />
-             
-
             <button type="submit">Save</button>
         </form>
     )

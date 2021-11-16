@@ -8,7 +8,6 @@ function Item ({film}) {
         dispatch({ type: 'DELETE_MOVIE', payload: film })
     }
 
-
     return(
         <>
         <p>{film.title}</p>
