@@ -58,6 +58,24 @@ router.post('/', (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+  let id = req.params.id
+
+  console.log(req.params.id);
+
+  let queryText = `
+  DELETE FROM "movies"
+  WHERE id= $1;`;
+
+  let values = [id]
+  pool.query(queryText, values)
+    .then(results => {
+      res.sendStatus(204)
+    }).catch(err => {
+      console.log(err)
+      res.sendStatus(500)
+    })
+})
 
 
 module.exports = router;
