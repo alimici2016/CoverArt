@@ -5,18 +5,20 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-
 /**
  * GET route template
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
-  const query = `SELECT FROM movies
-  WHERE id = $1 AND
-  user_id = $2;
-  `;
-  let values = [id, req.user.id]
-  pool.query(query, values)
+  const query = `
+  SELECT * FROM movies ORDER BY "title" ASC;`
+  ;
+  // SELECT FROM movies
+  // WHERE id = $1 AND
+  // user_id = $2;
+  // `;
+  // let values = [id, req.user.id]
+  pool.query(query)
     .then(result => {
       res.send(result.rows);
     })
@@ -75,7 +77,16 @@ router.delete('/:id', (req, res) => {
       console.log(err)
       res.sendStatus(500)
     })
-})
+});
+
+// router.put('/:id', (req,res) => {
+//   let id = req.params.id
+
+//   console.log(req.params.id)
+
+//   const queryText = `
+//   UPDATE "impressions" `
+// })
 
 
 module.exports = router;
