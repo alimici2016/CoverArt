@@ -1,4 +1,4 @@
-const MovieReducer = (state = {}, action) => {
+const MovieReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_MOVIES':
       return action.payload;
