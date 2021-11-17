@@ -60,14 +60,14 @@ router.post('/', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
-  let id = req.params.id
+router.delete('/:movies_id', (req, res) => {
+  let id = req.params.movies_id
 
-  console.log(req.params.id);
+  console.log(req.params.movies_id);
 
   let queryText = `
-  DELETE FROM "movies"
-  WHERE id= $1;`;
+  DELETE FROM "impressions"
+  WHERE movies_id= $1;`;
 
   let values = [id]
   pool.query(queryText, values)
@@ -78,27 +78,6 @@ router.delete('/:id', (req, res) => {
       res.sendStatus(500)
     })
 });
-
-// router.delete('/:impressionId', (req, res) => {
-//   let id = req.params.impressionId
-
-//   console.log(req.params.impressionId);
-
-//   let queryText = 
-//   `DELETE FROM "impressions"
-//   WHERE movies_id = $1 AND
-//   id= $2;`;
-
-//   let values = [id]
-
-//   pool.query(queryText, values)
-//     .then(results => {
-//       res.sendStatus(204)
-//     }).catch(err => {
-//       console.log(err)
-//       res.sendStatus(500)
-//     })
-// });
 
 
 
