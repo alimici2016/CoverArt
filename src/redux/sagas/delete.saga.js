@@ -13,8 +13,8 @@ function* deleteMovie (action) {
 
 // function* deleteImpression (action) {
 //     try{
-//       console.log(action.payload)
-//       yield axios.delete(`/api/movies/${action.payload.id}`)
+//       console.log(action.payload.movies_id)
+//       yield axios.delete(`/api/movies/${action.payload.movies_id}`)
 //     }catch{
 //         yield put ({type: 'DELETE_ERROR'})
 //     }
@@ -22,7 +22,7 @@ function* deleteMovie (action) {
 
 function* deleteSaga () {
    yield takeLatest('DELETE_MOVIE', deleteMovie)
-//    yield takeLatest('DELETE_IMPRESSION', deleteImpression)
+   yield takeLatest('DELETE_IMPRESSION', deleteImpression)
 }
 
 export default deleteSaga;

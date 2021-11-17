@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 import AddMovieForm from '../AddMovieForm/AddMovieForm';
+import Detail from '../Detail/Detail';
 
 function App() {
   const dispatch = useDispatch();
@@ -69,9 +70,14 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          <ProtectedRoute>
+          <ProtectedRoute path='/form'>
           <AddMovieForm />
           </ProtectedRoute>
+
+          <ProtectedRoute path ='/detail'>
+          <Detail />
+          </ProtectedRoute>
+
 
           <Route
             exact

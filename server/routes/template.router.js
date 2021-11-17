@@ -8,14 +8,16 @@ const {
 /**
  * GET route template
  */
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/details', rejectUnauthenticated, (req, res) => {
   // GET route code here
   const query = `
   SELECT "date", "movies_id", "impressions", "title", "genre", "image_url", "like", "director" FROM impressions
-  JOIN movies ON movies.id = impressions.movies_id;`;
-  pool.query(query)
+  JOIN movies ON movies.id = impressions.movies_id
+  WHERE impressions.movies_id = $1;`;
+  console.log(req.query.id)
+  pool.query(query, [req.query.id])
     .then(result => {
-      res.send(result.rows);
+    res.send(result.rows);
     })
     .catch(err => {
       console.log('ERROR: Get all movies', err);
@@ -24,13 +26,13 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 
-router.delete('/:movies_id', (req, res) => {
-  let id = req.params.movies_id
+router.delete('/id', (req, res) => {
+  let id = req.params.id
 
-  console.log(req.params.movies_id);
+  console.log(req.params.id);
 
   let queryText = `
-  DELETE FROM "movies"
+  DELETE FROM "impressions"
   WHERE id= $1;`;
 
   let values = [id]

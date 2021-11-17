@@ -14,8 +14,6 @@ function AddMovieForm() {
         impressions: '',
     })
 
-    const [like, updateLike] = useState()
-
     const handleChange = (event, property) => {
         setMovie({ ...movie, [property]: event.target.value })
     };
@@ -36,11 +34,6 @@ function AddMovieForm() {
                 type="text"
                 value={movie.title}
             />
-            {/* <input onChange={(event) => handleChange(event, 'genre')}
-                placeholder='genre'
-                type="text"
-                value={movie.genre}
-            /> */}
             <input onChange={(event) => handleChange(event, 'image_url')}
                 placeholder='image_url'
                 type="text"

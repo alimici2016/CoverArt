@@ -12,7 +12,7 @@ function* addMovie(action) {
     }
 }
 
-function* fetchAllMovies() {
+function* fetchMovies() {
     try {
         const movies = yield axios.get('/api/fetchMovies');
         console.log('get all', movies.data);
@@ -23,9 +23,21 @@ function* fetchAllMovies() {
     }
 };
 
+function* fetchImpression (action) {
+    const film = action.payload
+    try{
+        const movie = yield axios.get(`/api/movies/details?id=${film.id}`);
+        console.log('get', movie.data);
+        yield put({ type: 'SET_IMPRESSION', payload: movie.data });
+    }catch {
+        console.log('get all error');
+    }
+}
+
 function* MovieSaga() {
-    yield takeLatest('FETCH_MOVIES', fetchAllMovies);
+    yield takeLatest('FETCH_MOVIES', fetchMovies);
     yield takeLatest('ADD_MOVIE', addMovie);
+    yield takeLatest('FETCH_IMPRESSION', fetchImpression)
 };
 
 export default MovieSaga;
