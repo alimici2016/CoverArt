@@ -13,11 +13,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   const query = `
   SELECT "date", "movies_id", "impressions", "title", "genre", "image_url", "like", "director" FROM impressions
   JOIN movies ON movies.id = impressions.movies_id;`;
-  // SELECT FROM movies
-  // WHERE id = $1 AND
-  // user_id = $2;
-  // `;
-  // let values = [id, req.user.id]
   pool.query(query)
     .then(result => {
       res.send(result.rows);
@@ -27,38 +22,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500)
     })
 });
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
-  const movieQuery = `
-  INSERT INTO "movies" ("title", "genre", "image_url", "like", "director")
-  VALUES ($1, $2, $3, $4, $5)
-  RETURNING "id";`;
 
-  pool.query(movieQuery, [req.body.title, req.body.genre, req.body.image_url, req.body.like, req.body.director])
-    .then(result => {
-      console.log('new row here', result.rows[0].id)
-
-      const createdMovieId = result.rows[0].id
-
-      const movieImpressionQuery = `
-          INSERT INTO "impressions" ("date", "movies_id", "impressions")
-          VALUES  ($1, $2, $3);
-          `;
-      pool.query(movieImpressionQuery, [req.body.date, createdMovieId, req.body.impressions])
-        .then(result => {
-          res.sendStatus(201)
-        }).catch(err => {
-          res.sendStatus(500)
-          console.log(err);
-        })
-    }).catch(err => {
-      res.sendStatus(500)
-      console.log('err', err)
-    });
-});
 
 router.delete('/:movies_id', (req, res) => {
   let id = req.params.movies_id
@@ -66,8 +30,8 @@ router.delete('/:movies_id', (req, res) => {
   console.log(req.params.movies_id);
 
   let queryText = `
-  DELETE FROM "impressions"
-  WHERE movies_id= $1;`;
+  DELETE FROM "movies"
+  WHERE id= $1;`;
 
   let values = [id]
   pool.query(queryText, values)
@@ -78,6 +42,7 @@ router.delete('/:movies_id', (req, res) => {
       res.sendStatus(500)
     })
 });
+
 
 
 

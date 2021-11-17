@@ -18,7 +18,7 @@ function Item ({film}) {
         <p>{film.title}</p>
         <p>{film.impressions}</p>
 
-        <button onClick={handleDelete}>DELETE Movie</button>
+        <button onClick={handleDelete}>DELETE </button>
         {/* <button onClick={deleteImpression}>DELETE Impression</button> */}
         {/* <div>
                 <button className="button" onClick={() => updateLike(film)}>Like</button>
