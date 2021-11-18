@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function AddMovieForm() {
+
+    const history = useHistory();
 
     const dispatch = useDispatch();
 
@@ -21,6 +24,8 @@ function AddMovieForm() {
     const addMovie = (event) => {
         event.preventDefault();
         dispatch({ type: "ADD_MOVIE", payload: movie })
+        setMovie('')
+        history.push('/')
     };
 
     return (

@@ -34,10 +34,21 @@ function* fetchImpression (action) {
     }
 }
 
+function* addImpression (action) {
+    try {
+        console.log(action.payload)
+        // yield axios.post('/api/movies', action.payload)
+    } catch (error) {
+        console.log('ERROR IN POST', error);
+        yield put({ type: 'POST_ERROR' })
+    }
+}
+
 function* MovieSaga() {
     yield takeLatest('FETCH_MOVIES', fetchMovies);
     yield takeLatest('ADD_MOVIE', addMovie);
     yield takeLatest('FETCH_IMPRESSION', fetchImpression)
+    yield takeLatest('ADD_IMPRESSION', addImpression);
 };
 
 export default MovieSaga;

@@ -58,7 +58,7 @@ router.post('/', (req, res) => {
   });
 
 
-router.delete('/id', (req, res) => {
+router.delete('/:id', (req, res) => {
     let id = req.params.id
   
     console.log(req.params.id);
