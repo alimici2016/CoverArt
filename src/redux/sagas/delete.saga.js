@@ -13,8 +13,8 @@ function* deleteMovie (action) {
 
 function* deleteImpression (action) {
     try{
-      console.log(action.payload.movies.id)
-      // yield axios.delete(`/api/movies/${action.payload.movies.id}`)
+      console.log(action.payload)
+      yield axios.delete(`/api/movies/${action.payload}`)
     }catch{
         yield put ({type: 'DELETE_ERROR'})
     }

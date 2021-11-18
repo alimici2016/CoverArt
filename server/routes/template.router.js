@@ -42,24 +42,24 @@ router.post('/', (req, res) => {
 })
 
 
-// router.delete('/:id', (req, res) => {
-//   let id = req.params.id
+router.delete('/:id', (req, res) => {
+  let id = req.params.id
 
-//   console.log(req.params.id);
+  console.log(req.params.id);
 
-//   let queryText = `
-//   DELETE FROM "movies"
-//   WHERE id= $1;`;
+  let queryText = `
+  DELETE FROM "impressions"
+  WHERE movies_id= $1;`;
 
-//   let values = [id]
-//   pool.query(queryText, values)
-//     .then(results => {
-//       res.sendStatus(204)
-//     }).catch(err => {
-//       console.log(err)
-//       res.sendStatus(500)
-//     })
-// });
+  let values = [id]
+  pool.query(queryText, values)
+    .then(results => {
+      res.sendStatus(204)
+    }).catch(err => {
+      console.log(err)
+      res.sendStatus(500)
+    })
+});
 
 
 

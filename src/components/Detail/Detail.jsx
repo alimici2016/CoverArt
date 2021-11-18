@@ -13,9 +13,7 @@ function Detail() {
 
     const impressions = useSelector(store => store.SingleMovieImpression)
 
-        const deleteImpression = () => {
-            dispatch({type: 'DELETE_IMPRESSION', payload: impressions})
-        }
+        console.log(impressions)
 
         const handleChange = (event, property) => {
             setImpression({ ...impression, [property]: event.target.value })
@@ -29,9 +27,19 @@ function Detail() {
 
     return (
         <>
-            <p>{JSON.stringify(impressions)}</p>
-            <button onClick={deleteImpression}>DELETE Impression</button>
-
+        <tr>
+        {impressions.map((impression => (
+        <td key={impression.id}>
+            {impression.date}
+            {impression.title}
+            {impression.director}
+            {impression.impression}
+            <button onClick={() => dispatch({type: 'DELETE_IMPRESSION', payload: impression.movies_id})}>DELETE Impression</button>
+        </td>
+        )))}
+        </tr>
+        
+        
             <div>
             <form onSubmit={addImpression}>
             <input onChange={(event) => handleChange(event, 'date')}
