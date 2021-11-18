@@ -11,7 +11,6 @@ function Item({ film }) {
     }
 
     const handleClick = () => {
-        // console.log()
         dispatch({ type: 'FETCH_IMPRESSION', payload: film })
         history.push('/detail')
     }
