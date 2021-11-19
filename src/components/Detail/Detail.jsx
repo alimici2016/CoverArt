@@ -5,52 +5,60 @@ import { useDispatch } from "react-redux";
 function Detail() {
 
     const [newImpression, setNewImpression] = useState({
-        date:'',
-        impression:''
+        date: '',
+        impression: ''
     });
 
     const dispatch = useDispatch();
 
     const impressions = useSelector(store => store.SingleMovieImpression)
 
-        const handleChange = (event, property) => {
-            setNewImpression({ ...newImpression, [property]: event.target.value })
-        };
-    
-        const addNewImpression = (event) => {
-            event.preventDefault();
-            dispatch({ type: "ADD_IMPRESSION", payload: newImpression })
-        };
-    
+    const handleChange = (event, property) => {
+        setNewImpression({ ...newImpression, [property]: event.target.value })
+    };
+
+    const addNewImpression = (event) => {
+        event.preventDefault();
+        dispatch({ type: "ADD_IMPRESSION", payload: impressions.movies_id, newImpression })
+    };
+
 
     return (
         <>
-        <tr>
-        {impressions.map((impression => (
-        <td key={impression.id}>
-            {impression.date}
-            {impression.title}
-            {impression.director}
-            {impression.impression}
-            {/* <button onClick={() => dispatch({type: 'DELETE_IMPRESSION', payload: impression.movies_id})}>DELETE Impression</button> */}
-            <button onClick={() => dispatch({type: 'ADD_IMPRESSION', payload: impression.movies_id, newImpression})}>New Impression</button>
-        </td>
-        )))}
-        </tr>
-        
+            
+            <table border='1px' border-radius='10px' padding = '15px'>
+            <img src={impressions.image_url} />
+                <thead >
+                    <tr>
+                        <th>Date</th>
+                        <th>Title</th>
+                        <th>Impressions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr key={impressions.id}>
+                        <td>{impressions.date}</td>
+                        <td>{impressions.title}</td>
+                        <td>{impressions.director}</td>
+                        <td>{impressions.impression}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <button onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impressions.movies_id })}>DELETE Impression</button>
             <div>
-            <form onSubmit={addNewImpression}>
-            <input onChange={(event) => handleChange(event, 'date')}
-                type="date"
-                value={newImpression.date}
-            />
-            <input onChange={(event) => handleChange(event, 'impression')}
-                placeholder='impression'
-                type="text"
-                value={newImpression.impression}
-            />
-            <button type="submit">Save</button>
-            </form>
+                <form onSubmit={addNewImpression}>
+                    <input onChange={(event) => handleChange(event, 'date')}
+                        type="date"
+                        value={newImpression.date}
+                    />
+                    <input onChange={(event) => handleChange(event, 'impression')}
+                        placeholder='impression'
+                        type="text"
+                        value={newImpression.impression}
+                    />
+                    <button type="submit">Save</button>
+                </form>
             </div>
         </>
     )

@@ -12,7 +12,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   // user_id = $2;
   // `;
   // let values = [id, req.user.id]
-  const query = ` SELECT * FROM "movies";`;
+  const query = ` SELECT * FROM "movies"
+  ORDER BY "like" DESC;`;
   pool.query(query)
     .then(result => {
       res.send(result.rows);

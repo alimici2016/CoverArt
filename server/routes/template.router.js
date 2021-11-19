@@ -26,6 +26,7 @@ router.get('/details', rejectUnauthenticated, (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  console.log(movies_id)
   const query = `
   INSERT INTO "impressions" ("date", "movies_id", "impressions")
   VALUES  ($1, $2, $3);
@@ -62,16 +63,25 @@ router.delete('/:id', (req, res) => {
 });
 
 
+router.put('/:id', (req, res) => {
+  let id = req.params.id
 
+  console.log(req.params.id)
 
-// router.put('/:id', (req,res) => {
-//   let id = req.params.id
+  const queryText = `
+  UPDATE "movies"
+  SET "like" = 'TRUE'
+  WHERE id = $1;`;
+  let values = [id]
 
-//   console.log(req.params.id)
-
-//   const queryText = `
-//   UPDATE "impressions" `
-// })
+  pool.query(queryText, values)
+    .then(results => {
+      res.sendStatus(204)
+    }).catch(err => {
+      console.log(err)
+      res.sendStatus(500)
+    })
+})
 
 
 module.exports = router;

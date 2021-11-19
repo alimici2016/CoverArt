@@ -22,6 +22,7 @@ function DetailItem({ impression }) {
         setNewImpression({ ...newImpression, [property]: event.target.value })
     };
 
+    console.log(impressions.movie_id)
     console.log(impression.impression)
 
     return (

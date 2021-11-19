@@ -28,7 +28,7 @@ function* fetchImpression (action) {
     try{
         const movie = yield axios.get(`/api/movies/details?id=${film.id}`);
         console.log('get', movie.data);
-        yield put({ type: 'SET_IMPRESSION', payload: movie.data });
+        yield put({ type: 'SET_IMPRESSION', payload: movie.data[0] });
     }catch {
         console.log('get all error');
     }
@@ -37,10 +37,18 @@ function* fetchImpression (action) {
 function* addImpression (action) {
     try {
         console.log(action.payload)
-        // yield axios.post('/api/movies', action.payload)
+        yield axios.post('/api/movies', action.payload)
     } catch (error) {
         console.log('ERROR IN POST', error);
         yield put({ type: 'POST_ERROR' })
+    }
+}
+
+function* addLike (action) {
+    try{
+        yield axios.put(`/api/movies/${action.payload.id}`)
+    }catch{
+        yield put({ type: 'UPDATE_ERROR' })
     }
 }
 
@@ -49,6 +57,7 @@ function* MovieSaga() {
     yield takeLatest('ADD_MOVIE', addMovie);
     yield takeLatest('FETCH_IMPRESSION', fetchImpression)
     yield takeLatest('ADD_IMPRESSION', addImpression);
+    yield takeLatest('ADD_LIKE', addLike);
 };
 
 export default MovieSaga;
