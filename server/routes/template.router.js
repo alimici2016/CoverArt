@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
   INSERT INTO "impressions" ("date", "movies_id", "impressions")
   VALUES  ($1, $2, $3);
   `;
-  pool.query(query, [req.body.date, req.body.movie_id, req.body.impressions])
+  pool.query(query, [req.body.date, req.body.movies_id, req.body.impressions])
     .then(result => {
       res.sendStatus(201);
     })

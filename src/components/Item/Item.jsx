@@ -13,10 +13,10 @@ function Item({ film }) {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [isFlipped, setIsFlipped] = useState(false)
+    const [isLiked, setIsLiked] = useState(false)
 
     const handleFlip = () => {
-        setIsFlipped(!isFlipped);
+       
     }
 
     const handleDelete = () => {
@@ -30,12 +30,11 @@ function Item({ film }) {
 
     const handleLike = () => {
         dispatch({ type: 'ADD_LIKE', payload: film })
+        setIsLiked(!isLiked);
     }
 
     return (
         <>
-
-            {/* <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal"> */}
                 <div>
                     <Card sx={{ width: 280, margin: 2, padding: 5 }}>
                         <h2> {film.title}</h2>
@@ -54,7 +53,6 @@ function Item({ film }) {
                         </CardActions>
                     </Card>
                 </div>
-            {/* </ReactCardFlip> */}
         </>
     )
 }

@@ -13,25 +13,27 @@ function Detail() {
 
     const impressions = useSelector(store => store.SingleMovieImpression)
 
+    let selectedMovieId = impressions.movies_id
+
     const handleChange = (event, property) => {
         setNewImpression({ ...newImpression, [property]: event.target.value })
     };
 
     const addNewImpression = (event) => {
         event.preventDefault();
-        dispatch({ type: "ADD_IMPRESSION", payload: impressions.movies_id, newImpression })
+        dispatch({ type: "ADD_IMPRESSION", payload: {...newImpression, selectedMovieId}})
     };
 
 
     return (
         <>
-            
             <table border='1px' border-radius='10px' padding = '15px'>
-            <img src={impressions.image_url} />
+            {/* <img src={impressions.image_url} /> */}
                 <thead >
                     <tr>
                         <th>Date</th>
                         <th>Title</th>
+                        <th>Director</th>
                         <th>Impressions</th>
                     </tr>
                 </thead>
@@ -40,7 +42,7 @@ function Detail() {
                         <td>{impressions.date}</td>
                         <td>{impressions.title}</td>
                         <td>{impressions.director}</td>
-                        <td>{impressions.impression}</td>
+                        <td>{impressions.impressions}</td>
                     </tr>
                 </tbody>
             </table>

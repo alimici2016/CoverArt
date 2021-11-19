@@ -6,6 +6,7 @@ function* addMovie(action) {
     try {
         console.log(action.payload)
         yield axios.post('/api/fetchMovies', action.payload)
+        yield put({ type: 'SET_MOVIES', payload: movies.data });
     } catch (error) {
         console.log('ERROR IN POST', error);
         yield put({ type: 'POST_ERROR' })
@@ -36,8 +37,8 @@ function* fetchImpression (action) {
 
 function* addImpression (action) {
     try {
-        console.log(action.payload)
-        yield axios.post('/api/movies', action.payload)
+        console.log(action.payload.selectedMovieId)
+        yield axios.post('/api/movies/details', action.payload)
     } catch (error) {
         console.log('ERROR IN POST', error);
         yield put({ type: 'POST_ERROR' })
