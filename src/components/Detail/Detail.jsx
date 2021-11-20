@@ -28,7 +28,6 @@ function Detail() {
     return (
         <>
             <table border='1px' border-radius='10px' padding = '15px'>
-            {/* <img src={impressions.image_url} /> */}
                 <thead >
                     <tr>
                         <th>Date</th>

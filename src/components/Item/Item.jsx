@@ -40,7 +40,7 @@ function Item({ film }) {
                         <h2> {film.title}</h2>
                         <h3> Director: {film.director}</h3>
                         <CardMedia
-                            // component="img"
+                            component="img"
                             height="200"
                             margin='15'
                             image={film.image_url}

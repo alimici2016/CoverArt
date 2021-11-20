@@ -29,14 +29,13 @@ router.post('/', (req, res) => {
   console.log(movies_id)
   const query = `
   INSERT INTO "impressions" ("date", "movies_id", "impressions")
-  VALUES  ($1, $2, $3);
+  VALUES ($1, $2, $3);
   `;
   pool.query(query, [req.body.date, req.body.movies_id, req.body.impressions])
     .then(result => {
       res.sendStatus(201);
     })
     .catch(err => {
-      // catch for second query
       console.log(err);
       res.sendStatus(500)
     })
