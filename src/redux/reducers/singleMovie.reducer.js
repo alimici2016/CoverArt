@@ -1,4 +1,4 @@
-const SingleMovieImpression = (state = {}, action) => {
+const SingleMovieImpression = (state = [], action) => {
     switch (action.type) {
       case 'SET_IMPRESSION':
         return action.payload;

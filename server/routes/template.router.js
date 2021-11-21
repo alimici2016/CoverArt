@@ -11,7 +11,7 @@ const {
 router.get('/details', rejectUnauthenticated, (req, res) => {
   // GET route code here
   const query = `
-  SELECT "date", "movies_id", "impressions", "title", "genre", "image_url", "like", "director" FROM impressions
+  SELECT * FROM impressions
   JOIN movies ON movies.id = impressions.movies_id
   WHERE impressions.movies_id = $1;`;
   // console.log(req.query.id)
@@ -55,13 +55,13 @@ router.post('/details', (req, res) => {
 
 
 router.delete('/:id', (req, res) => {
-  let id = req.params.id
+  let id = req.params
 
-  console.log(req.params.id);
+  console.log(req.params);
 
   let queryText = `
   DELETE FROM "impressions"
-  WHERE movies_id= $1;`;
+  WHERE id= $1;`;
 
   let values = [id]
   pool.query(queryText, values)

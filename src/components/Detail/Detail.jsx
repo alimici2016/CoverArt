@@ -27,6 +27,8 @@ function Detail() {
 
     return (
         <>
+        <div>
+        {impressions.map((impression => (
             <table border='1px' border-radius='10px' padding = '15px'>
                 <thead >
                     <tr>
@@ -35,18 +37,20 @@ function Detail() {
                         <th>Director</th>
                         <th>Impressions</th>
                     </tr>
+                   
                 </thead>
                 <tbody>
-                    <tr key={impressions.id}>
-                        <td>{impressions.date}</td>
-                        <td>{impressions.title}</td>
-                        <td>{impressions.director}</td>
-                        <td>{impressions.impressions}</td>
-                    </tr>
+                    <tr key={impression.id}>
+                        <td>{impression.date}</td>
+                        <td>{impression.title}</td>
+                        <td>{impression.director}</td>
+                        <td>{impression.impressions}</td>
+                        <button onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression.id })}>DELETE Impression</button>
+                    </tr>      
                 </tbody>
             </table>
-            
-            <button onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impressions.movies_id })}>DELETE Impression</button>
+             )))}
+            </div>
             <div>
                 <form onSubmit={addNewImpression}>
                     <input onChange={(event) => handleChange(event, 'date')}
