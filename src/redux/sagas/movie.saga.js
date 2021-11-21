@@ -37,8 +37,8 @@ function* fetchImpression (action) {
 
 function* addImpression (action) {
     try {
-        console.log(action.payload)
-        yield axios.post('/api/movies', action.payload)
+        console.log('this is payload', action.payload.movies_id)
+        yield axios.post(`/api/movies/${action.payload.movies_id}` )
     } catch (error) {
         console.log('ERROR IN POST', error);
         yield put({ type: 'POST_ERROR' })
@@ -47,7 +47,7 @@ function* addImpression (action) {
 
 function* addLike (action) {
     try{
-        yield axios.put(`/api/movies/${action.payload.id}`)
+        yield axios.put(`/api/movies/${action.payload.movies_id}`)
     }catch{
         yield put({ type: 'UPDATE_ERROR' })
     }

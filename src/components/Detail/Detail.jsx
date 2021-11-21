@@ -13,7 +13,7 @@ function Detail() {
 
     const impressions = useSelector(store => store.SingleMovieImpression)
 
-    let selectedMovieId = impressions.movies_id
+    let movies_id = impressions.movies_id
 
     const handleChange = (event, property) => {
         setNewImpression({ ...newImpression, [property]: event.target.value })
@@ -21,7 +21,7 @@ function Detail() {
 
     const addNewImpression = (event) => {
         event.preventDefault();
-        dispatch({ type: "ADD_IMPRESSION", payload: {...newImpression, selectedMovieId}})
+        dispatch({ type: "ADD_IMPRESSION", payload: {...newImpression, movies_id}})
     };
 
 

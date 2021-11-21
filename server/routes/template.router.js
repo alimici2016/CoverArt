@@ -14,7 +14,7 @@ router.get('/details', rejectUnauthenticated, (req, res) => {
   SELECT "date", "movies_id", "impressions", "title", "genre", "image_url", "like", "director" FROM impressions
   JOIN movies ON movies.id = impressions.movies_id
   WHERE impressions.movies_id = $1;`;
-  console.log(req.query.id)
+  // console.log(req.query.id)
   pool.query(query, [req.query.id])
     .then(result => {
       res.send(result.rows);
@@ -25,13 +25,18 @@ router.get('/details', rejectUnauthenticated, (req, res) => {
     })
 });
 
-router.post('/', (req, res) => {
-  console.log(movies_id)
+router.post('/:movies_id', (req, res) => {
+
+  let movies_id = req.params.movies_id
+  
+  console.log('this is movie_id', movies_id)
+  
   const query = `
   INSERT INTO "impressions" ("date", "movies_id", "impressions")
   VALUES ($1, $2, $3);
   `;
-  pool.query(query, [req.body.date, req.body.movies_id, req.body.impressions])
+  console
+  pool.query(query, [req.body.date, movies_id, req.body.impressions])
     .then(result => {
       res.sendStatus(201);
     })
