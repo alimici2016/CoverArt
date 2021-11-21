@@ -45,7 +45,7 @@ function Detail() {
                         <td>{impression.title}</td>
                         <td>{impression.director}</td>
                         <td>{impression.impressions}</td>
-                        <button onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression.id })}>DELETE Impression</button>
+                        <button onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>DELETE Impression</button>
                     </tr>      
                 </tbody>
             </table>

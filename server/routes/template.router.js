@@ -11,12 +11,13 @@ const {
 router.get('/details', rejectUnauthenticated, (req, res) => {
   // GET route code here
   const query = `
-  SELECT * FROM impressions
+  SELECT impressions.id, "date", "movies_id", "impressions", "title", "genre", "image_url", "like", "director" FROM impressions
   JOIN movies ON movies.id = impressions.movies_id
   WHERE impressions.movies_id = $1;`;
   // console.log(req.query.id)
   pool.query(query, [req.query.id])
     .then(result => {
+      console.log(result.rows)
       res.send(result.rows);
     })
     .catch(err => {
@@ -55,7 +56,7 @@ router.post('/details', (req, res) => {
 
 
 router.delete('/:id', (req, res) => {
-  let id = req.params
+  let id = req.params.id
 
   console.log(req.params);
 
