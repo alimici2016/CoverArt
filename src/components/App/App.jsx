@@ -74,7 +74,7 @@ function App() {
           <AddMovieForm />
           </ProtectedRoute>
 
-          <ProtectedRoute path ='/detail'>
+          <ProtectedRoute path ='/detail/:movies_id'>
           <Detail />
           </ProtectedRoute>
 

@@ -15,17 +15,13 @@ function Item({ film }) {
 
     const [isLiked, setIsLiked] = useState(false)
 
-    const handleFlip = () => {
-       
-    }
-
     const handleDelete = () => {
         dispatch({ type: 'DELETE_MOVIE', payload: film })
     }
 
     const handleClick = () => {
         dispatch({ type: 'FETCH_IMPRESSION', payload: film })
-        history.push('/detail')
+        history.push(`/detail/${film.id}`)
     }
 
     const handleLike = () => {
@@ -44,7 +40,7 @@ function Item({ film }) {
                             height="200"
                             margin='15'
                             image={film.image_url}
-                            onClick={handleFlip}
+                            // onClick={handleFlip}
                         />
                         <CardActions>
                             <Button onClick={handleClick} size="small">Learn More</Button>

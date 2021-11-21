@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
+import {useParams} from 'react-router-dom';
 
 function Detail() {
 
@@ -9,11 +10,13 @@ function Detail() {
         impression: ''
     });
 
+    const {movies_id} = useParams();
+
     const dispatch = useDispatch();
 
     const impressions = useSelector(store => store.SingleMovieImpression)
 
-    let movies_id = impressions.movies_id
+    // let movies_id = impressions.movies_id
 
     const handleChange = (event, property) => {
         setNewImpression({ ...newImpression, [property]: event.target.value })

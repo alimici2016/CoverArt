@@ -25,18 +25,25 @@ router.get('/details', rejectUnauthenticated, (req, res) => {
     })
 });
 
-router.post('/:movies_id', (req, res) => {
+router.post('/details', (req, res) => {
 
-  let movies_id = req.params.movies_id
-  
+  console.log(req.body)
+
+  let movies_id = req.body.movies_id
   console.log('this is movie_id', movies_id)
+
+  let date = req.body.date
+  console.log(date)
+
+  let impression = req.body.impression
+  console.log(impression)
   
   const query = `
   INSERT INTO "impressions" ("date", "movies_id", "impressions")
   VALUES ($1, $2, $3);
   `;
   console
-  pool.query(query, [req.body.date, movies_id, req.body.impressions])
+  pool.query(query, [date, movies_id, impression])
     .then(result => {
       res.sendStatus(201);
     })

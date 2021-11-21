@@ -36,9 +36,10 @@ function* fetchImpression (action) {
 }
 
 function* addImpression (action) {
+    let film = action.payload
     try {
-        console.log('this is payload', action.payload.movies_id)
-        yield axios.post(`/api/movies/${action.payload.movies_id}` )
+        console.log('this is payload', film)
+        yield axios.post('/api/movies/details/',film)
     } catch (error) {
         console.log('ERROR IN POST', error);
         yield put({ type: 'POST_ERROR' })
