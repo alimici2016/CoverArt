@@ -1,5 +1,11 @@
 html,
-body,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Marker Felt, fantasy';
+  background-color: rgba(232, 221, 248, 0.856);
+}
+
 #react-root {
   height: 100%;
 }

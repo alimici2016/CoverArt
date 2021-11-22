@@ -13,7 +13,8 @@ router.get('/details', rejectUnauthenticated, (req, res) => {
   const query = `
   SELECT impressions.id, "date", "movies_id", "impressions", "title", "genre", "image_url", "like", "director" FROM impressions
   JOIN movies ON movies.id = impressions.movies_id
-  WHERE impressions.movies_id = $1;`;
+  WHERE impressions.movies_id = $1
+  ORDER BY date;`;
   // console.log(req.query.id)
   pool.query(query, [req.query.id])
     .then(result => {

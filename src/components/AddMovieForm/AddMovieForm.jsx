@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import Input from '@mui/material/Input';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import NativeSelect from '@mui/material/NativeSelect';
 
 function AddMovieForm() {
 
@@ -30,49 +35,55 @@ function AddMovieForm() {
 
     return (
         <form onSubmit={addMovie}>
-            <input onChange={(event) => handleChange(event, 'date')}
+            <Input onChange={(event) => handleChange(event, 'date')}
                 type="date"
                 value={movie.date}
             />
-            <input onChange={(event) => handleChange(event, 'title')}
+            <Input onChange={(event) => handleChange(event, 'title')}
                 placeholder='title'
                 type="text"
                 value={movie.title}
             />
-            <input onChange={(event) => handleChange(event, 'image_url')}
+            <Input onChange={(event) => handleChange(event, 'image_url')}
                 placeholder='image_url'
                 type="text"
                 value={movie.image_url}
             />
-           
-            <input onChange={(event) => handleChange(event, 'director')}
+
+            <Input onChange={(event) => handleChange(event, 'director')}
                 placeholder='director'
                 type="text"
                 value={movie.director}
             />
-            <input onChange={(event) => handleChange(event, 'impressions')}
+            <Input onChange={(event) => handleChange(event, 'impressions')}
                 placeholder='impression'
                 type="text"
                 value={movie.impressions}
             />
-             <select
-            onChange={(event) => handleChange(event, 'genre')}>
-             <option value="">Choose a category</option>
-             <option value='Adventure'>Adventure</option>
-             <option value='Animated'>Animated</option>
-             <option value='Biographical'>Biographical</option>
-             <option value='Comedy'>Comedy</option>
-             <option value='Disaster'>Disaster</option>
-             <option value='Drama'>Drama</option>
-             <option value={7}>Epic</option>
-             <option value={8}>Fantasy</option>
-             <option value={9}>Musical</option>
-             <option value={10}>Romantic</option>
-             <option value={11}>Science Fiction</option>
-             <option value={12}>Space-Opera</option>
-             <option value={13}>Superhero</option>
-              </select>
-            <button type="submit">Save</button>
+            <Box sx={{ minWidth: 1 }}>
+                <FormControl fullWidth>
+                    <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                    </InputLabel>
+                    <NativeSelect
+                        onChange={(event) => handleChange(event, 'genre')}>
+                        <option value="">Choose Genre</option>
+                        <option value='Adventure'>Adventure</option>
+                        <option value='Animated'>Animated</option>
+                        <option value='Biographical'>Biographical</option>
+                        <option value='Comedy'>Comedy</option>
+                        <option value='Disaster'>Disaster</option>
+                        <option value='Drama'>Drama</option>
+                        <option value={7}>Epic</option>
+                        <option value={8}>Fantasy</option>
+                        <option value={9}>Musical</option>
+                        <option value={10}>Romantic</option>
+                        <option value={11}>Science Fiction</option>
+                        <option value={12}>Space-Opera</option>
+                        <option value={13}>Superhero</option>
+                    <button type="submit">Save</button>
+                    </NativeSelect>
+                </FormControl>
+            </Box >
         </form>
     )
 }

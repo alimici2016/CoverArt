@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Input from '@mui/material/Input';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import SendIcon from '@mui/icons-material/Send';
 
 function Detail() {
 
@@ -10,7 +18,7 @@ function Detail() {
         impression: ''
     });
 
-    const {movies_id} = useParams();
+    const { movies_id } = useParams();
 
     const dispatch = useDispatch();
 
@@ -22,47 +30,45 @@ function Detail() {
 
     const addNewImpression = (event) => {
         event.preventDefault();
-        dispatch({ type: "ADD_IMPRESSION", payload: {...newImpression, movies_id}})
+        dispatch({ type: "ADD_IMPRESSION", payload: { ...newImpression, movies_id } })
     };
 
     return (
         <>
-        <div>
-        {impressions.map((impression => (
-            <table border='1px' border-radius='10px' padding = '15px'>
-                <thead >
-                    <tr>
-                        <th>Date</th>
-                        <th>Title</th>
-                        <th>Director</th>
-                        <th>Impressions</th>
-                    </tr>
-                   
-                </thead>
-                <tbody>
-                    <tr key={impression.id}>
-                        <td>{impression.date}</td>
-                        <td>{impression.title}</td>
-                        <td>{impression.director}</td>
-                        <td>{impression.impressions}</td>
-                        <button onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>DELETE Impression</button>
-                    </tr>      
-                </tbody>
-            </table>
-             )))}
-            </div>
+                <TableContainer border='1px' border-radius='10px' padding='15px'>
+                    <TableHead >
+                        <TableRow>
+                            <TableCell>Date</TableCell>
+                            <TableCell>Title</TableCell>
+                            <TableCell>Director</TableCell>
+                            <TableCell>Impressions</TableCell>
+                        </TableRow>
+
+                    </TableHead>
+                    <TableBody>
+                        {impressions.map((impression => (
+                            <TableRow key={impression.id}>
+                                <TableCell>{impression.date}</TableCell>
+                                <TableCell>{impression.title}</TableCell>
+                                <TableCell>{impression.director}</TableCell>
+                                <TableCell>{impression.impressions}</TableCell>
+                                <DeleteIcon onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>Delete Impression</DeleteIcon>
+                            </TableRow>
+                        )))}
+                    </TableBody>
+                </TableContainer>
             <div>
                 <form onSubmit={addNewImpression}>
-                    <input onChange={(event) => handleChange(event, 'date')}
+                    <Input onChange={(event) => handleChange(event, 'date')}
                         type="date"
                         value={newImpression.date}
                     />
-                    <input onChange={(event) => handleChange(event, 'impression')}
+                    <Input onChange={(event) => handleChange(event, 'impression')}
                         placeholder='impression'
                         type="text"
                         value={newImpression.impression}
                     />
-                    <button type="submit">Save</button>
+                    <SendIcon type="submit">Save</SendIcon>
                 </form>
             </div>
         </>

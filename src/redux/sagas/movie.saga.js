@@ -26,6 +26,7 @@ function* fetchMovies() {
 
 function* fetchImpression(action) {
     const film = action.payload
+    console.log(film.id)
     try {
         const movie = yield axios.get(`/api/movies/details?id=${film.id}`);
         console.log('get', movie.data);
@@ -39,8 +40,8 @@ function* addImpression(action) {
     let film = action.payload
     try {
         console.log('this is payload', film)
-        yield axios.post('/api/movies/details/', film)
-        yield put({ type: 'SET_IMPRESSION'})
+        yield axios.post('/api/movies/details', film)
+        yield put({ type: 'FETCH_IMPRESSION'})
     } catch (error) {
         console.log('ERROR IN POST', error);
         yield put({ type: 'POST_ERROR' })
