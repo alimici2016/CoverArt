@@ -15,7 +15,7 @@ router.get('/details', rejectUnauthenticated, (req, res) => {
   JOIN movies ON movies.id = impressions.movies_id
   WHERE impressions.movies_id = $1
   ORDER BY date;`;
-  // console.log(req.query.id)
+  console.log('get', req.query.id)
   pool.query(query, [req.query.id])
     .then(result => {
       console.log(result.rows)

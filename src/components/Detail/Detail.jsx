@@ -69,7 +69,7 @@ function Detail() {
                         <TableBody>
                             {impressions.map((impression => (
                                 <TableRow key={impression.id}>
-                                    <TableCell>{impression.date.split('T')[0]}</TableCell>
+                                    <TableCell>{impression.date?.split('T')[0]}</TableCell>
                                     <TableCell>{impression.impressions}</TableCell>
                                     <DeleteIcon onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>Delete Impression</DeleteIcon>
                                 </TableRow>
