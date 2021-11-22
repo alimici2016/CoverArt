@@ -26,7 +26,7 @@ function Detail() {
 
     const dispatch = useDispatch();
 
-    const impressions = useSelector(store => store.SingleMovieImpression)
+    const impressions = useSelector(store => store.SingleMovieImpression);
 
     const handleChange = (event, property) => {
         setNewImpression({ ...newImpression, [property]: event.target.value })
@@ -35,9 +35,12 @@ function Detail() {
     const addNewImpression = (event) => {
         event.preventDefault();
         dispatch({ type: "ADD_IMPRESSION", payload: { ...newImpression, movies_id } })
-        setNewImpression({ date: '',
-        impression: ''})
+        setNewImpression({
+            date: '',
+            impression: ''
+        })
     };
+
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
             backgroundColor: theme.palette.common.white,
@@ -51,9 +54,10 @@ function Detail() {
     return (
         <>
             <Paper elevation={4}>
-                <Table sx={{ 
+                <Table sx={{
                     minWidth: 100,
-                    height: 100 }}>
+                    height: 100
+                }}>
                     <TableContainer border='1px' border-radius='10px' padding='15px'>
                         <TableHead >
                             <TableRow>
@@ -67,7 +71,7 @@ function Detail() {
                                 <TableRow key={impression.id}>
                                     <TableCell>{impression.date.split('T')[0]}</TableCell>
                                     <TableCell>{impression.impressions}</TableCell>
-                                    <DeleteIcon onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression})}>Delete Impression</DeleteIcon>
+                                    <DeleteIcon onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>Delete Impression</DeleteIcon>
                                 </TableRow>
                             )))}
                         </TableBody>
@@ -91,5 +95,5 @@ function Detail() {
             </Paper>
         </>
     )
-}
+};
 export default Detail;

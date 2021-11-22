@@ -6,12 +6,12 @@ function* addMovie(action) {
     try {
         console.log(action.payload)
         yield axios.post('/api/fetchMovies', action.payload)
-        yield put({ type: 'FETCH_MOVIES'});
+        yield put({ type: 'FETCH_MOVIES' });
     } catch (error) {
         console.log('ERROR IN POST', error);
         yield put({ type: 'POST_ERROR' })
     }
-}
+};
 
 function* fetchMovies() {
     try {
@@ -29,12 +29,12 @@ function* addImpression(action) {
     try {
         console.log('this is payload', film.movies_id)
         yield axios.post('/api/movies/details', film)
-        yield put({ type: 'FETCH_IMPRESSION', payload: film.movies_id})
+        yield put({ type: 'FETCH_IMPRESSION', payload: film.movies_id })
     } catch (error) {
         console.log('ERROR IN POST', error);
         yield put({ type: 'POST_ERROR' })
     }
-}
+};
 
 function* fetchImpression(action) {
     const film = action.payload
@@ -46,7 +46,7 @@ function* fetchImpression(action) {
     } catch {
         console.log('get all error');
     }
-}
+};
 
 function* addLike(action) {
     try {
@@ -65,7 +65,7 @@ function* updateImpression(action) {
         yield put({ type: 'UPDATE_ERROR' })
     }
 
-}
+};
 
 function* MovieSaga() {
     yield takeLatest('FETCH_MOVIES', fetchMovies);

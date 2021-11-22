@@ -20,7 +20,7 @@ function AddMovieForm() {
         image_url: '',
         director: '',
         impressions: '',
-    })
+    });
 
     const handleChange = (event, property) => {
         setMovie({ ...movie, [property]: event.target.value })
@@ -88,6 +88,6 @@ function AddMovieForm() {
             </Box >
         </form>
     )
-}
+};
 
 export default AddMovieForm;
