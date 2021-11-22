@@ -12,6 +12,7 @@ function* deleteMovie (action) {
 };
 
 function* deleteImpression (action) {
+  console.log(action.payload)
     try{
       console.log(action.payload.id)
       yield axios.delete(`/api/movies/${action.payload.id}`)

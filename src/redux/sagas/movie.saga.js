@@ -6,7 +6,7 @@ function* addMovie(action) {
     try {
         console.log(action.payload)
         yield axios.post('/api/fetchMovies', action.payload)
-        yield put({ type: 'SET_MOVIES', payload: movies.data });
+        yield put({ type: 'FETCH_MOVIES'});
     } catch (error) {
         console.log('ERROR IN POST', error);
         yield put({ type: 'POST_ERROR' })
@@ -24,27 +24,27 @@ function* fetchMovies() {
     }
 };
 
+function* addImpression(action) {
+    let film = action.payload
+    try {
+        console.log('this is payload', film.movies_id)
+        yield axios.post('/api/movies/details', film)
+        yield put({ type: 'FETCH_IMPRESSION', payload: film.movies_id})
+    } catch (error) {
+        console.log('ERROR IN POST', error);
+        yield put({ type: 'POST_ERROR' })
+    }
+}
+
 function* fetchImpression(action) {
     const film = action.payload
-    console.log(film.id)
+    console.log(film)
     try {
-        const movie = yield axios.get(`/api/movies/details?id=${film.id}`);
+        const movie = yield axios.get(`/api/movies/details?id=${film}`);
         console.log('get', movie.data);
         yield put({ type: 'SET_IMPRESSION', payload: movie.data });
     } catch {
         console.log('get all error');
-    }
-}
-
-function* addImpression(action) {
-    let film = action.payload
-    try {
-        console.log('this is payload', film)
-        yield axios.post('/api/movies/details', film)
-        yield put({ type: 'FETCH_IMPRESSION'})
-    } catch (error) {
-        console.log('ERROR IN POST', error);
-        yield put({ type: 'POST_ERROR' })
     }
 }
 

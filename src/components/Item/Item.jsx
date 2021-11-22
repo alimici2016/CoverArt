@@ -27,7 +27,7 @@ function Item({ film }) {
     }
 
     const handleClick = () => {
-        dispatch({ type: 'FETCH_IMPRESSION', payload: film })
+        dispatch({ type: 'FETCH_IMPRESSION', payload: film.id })
         history.push(`/detail/${film.id}`)
     }
 
@@ -56,25 +56,16 @@ function Item({ film }) {
                     </Card>
                 </div>
 
-                <div>
                     <Card sx={{ width: 280, margin: 2, padding: 5 }}>
                         <h3> {film.title}</h3>
                         <h5> Director: {film.director}</h5>
                         <h5> Genre: {film.genre}</h5>
-                        <CardMedia
-                            // component="img"
-                            height="225"
-                            margin='15'
-                            onClick={handleFlip}
-                        />
                         <CardActions>
-                            <Button onClick={handleClick} size="small">Learn More</Button>
-                            <Button onClick={handleDelete} size="small">Delete</Button>
+                            <Button onClick={handleClick} size="small" align = 'center'>Previous</Button>
+                            <Button onClick={handleDelete} size="small" align = 'center'>Delete</Button>
                         </CardActions>
                     </Card>
-                </div>
             </ReactCardFlip>
-
         </>
     )
 }

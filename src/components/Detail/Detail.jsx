@@ -4,12 +4,16 @@ import { useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Input from '@mui/material/Input';
+import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import { styled } from '@mui/material/styles';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import SendIcon from '@mui/icons-material/Send';
+import Paper from '@mui/material/Paper';
+
 
 function Detail() {
 
@@ -32,45 +36,57 @@ function Detail() {
         event.preventDefault();
         dispatch({ type: "ADD_IMPRESSION", payload: { ...newImpression, movies_id } })
     };
+    const StyledTableCell = styled(TableCell)(({ theme }) => ({
+        [`&.${tableCellClasses.head}`]: {
+            backgroundColor: theme.palette.common.white,
+            color: theme.palette.common.lavender,
+        },
+        [`&.${tableCellClasses.body}`]: {
+            fontSize: 25,
+        },
+    }));
 
     return (
         <>
-                <TableContainer border='1px' border-radius='10px' padding='15px'>
-                    <TableHead >
-                        <TableRow>
-                            <TableCell>Date</TableCell>
-                            <TableCell>Title</TableCell>
-                            <TableCell>Director</TableCell>
-                            <TableCell>Impressions</TableCell>
-                        </TableRow>
-
-                    </TableHead>
-                    <TableBody>
-                        {impressions.map((impression => (
-                            <TableRow key={impression.id}>
-                                <TableCell>{impression.date}</TableCell>
-                                <TableCell>{impression.title}</TableCell>
-                                <TableCell>{impression.director}</TableCell>
-                                <TableCell>{impression.impressions}</TableCell>
-                                <DeleteIcon onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>Delete Impression</DeleteIcon>
+            <Paper elevation={4}>
+                <Table sx={{ 
+                    minWidth: 100,
+                    height: 100 }}>
+                    <TableContainer border='1px' border-radius='10px' padding='15px'>
+                        <TableHead >
+                            <TableRow>
+                                <StyledTableCell>Date</StyledTableCell>
+                                <StyledTableCell>Impressions</StyledTableCell>
+                                <StyledTableCell>Delete</StyledTableCell>
                             </TableRow>
-                        )))}
-                    </TableBody>
-                </TableContainer>
-            <div>
-                <form onSubmit={addNewImpression}>
-                    <Input onChange={(event) => handleChange(event, 'date')}
-                        type="date"
-                        value={newImpression.date}
-                    />
-                    <Input onChange={(event) => handleChange(event, 'impression')}
-                        placeholder='impression'
-                        type="text"
-                        value={newImpression.impression}
-                    />
-                    <SendIcon type="submit">Save</SendIcon>
-                </form>
-            </div>
+                        </TableHead>
+                        <TableBody>
+                            {impressions.map((impression => (
+                                <TableRow key={impression.id}>
+                                    <TableCell>{impression.date}</TableCell>
+                                    <TableCell>{impression.impressions}</TableCell>
+                                    <DeleteIcon onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>Delete Impression</DeleteIcon>
+                                </TableRow>
+                            )))}
+                        </TableBody>
+                    </TableContainer>
+                </Table>
+
+                <div>
+                    <form onSubmit={addNewImpression}>
+                        <Input onChange={(event) => handleChange(event, 'date')}
+                            type="date"
+                            value={newImpression.date}
+                        />
+                        <Input onChange={(event) => handleChange(event, 'impression')}
+                            placeholder='impression'
+                            type="text"
+                            value={newImpression.impression}
+                        />
+                        <button type="submit">Save</button>
+                    </form>
+                </div>
+            </Paper>
         </>
     )
 }
