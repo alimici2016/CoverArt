@@ -16,9 +16,9 @@ function* deleteImpression (action) {
     try{
       console.log(action.payload.id)
       yield axios.delete(`/api/movies/${action.payload.id}`)
-      yield put({type:'FETCH_IMPRESSION'})
+      // yield put({type:'FETCH_IMPRESSION', payload: action.payload})
     }catch{
-        yield put ({type: 'DELETE_ERROR'})
+        yield put ({type: 'DELETE_ERROR', })
     }
 };
 

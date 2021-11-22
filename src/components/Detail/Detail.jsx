@@ -35,6 +35,8 @@ function Detail() {
     const addNewImpression = (event) => {
         event.preventDefault();
         dispatch({ type: "ADD_IMPRESSION", payload: { ...newImpression, movies_id } })
+        setNewImpression({ date: '',
+        impression: ''})
     };
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
