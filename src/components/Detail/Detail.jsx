@@ -11,7 +11,7 @@ import { styled } from '@mui/material/styles';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import SendIcon from '@mui/icons-material/Send';
+import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 
 
@@ -85,7 +85,7 @@ function Detail() {
                             type="text"
                             value={newImpression.impression}
                         />
-                        <button type="submit">Save</button>
+                        <Button disabled={newImpression.impression.length < 1 || newImpression.impression == ''} type="submit">Save</Button>
                     </form>
                 </div>
             </Paper>

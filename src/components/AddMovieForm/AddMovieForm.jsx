@@ -83,7 +83,7 @@ function AddMovieForm() {
                         <option value='Space-Opera'>Space-Opera</option>
                         <option value='Superhero'>Superhero</option>
                     </NativeSelect>
-                    <button type="submit">Save</button>
+                    <button disabled={movie.impressions == '' || movie.title == ''} type="submit">Save</button>
                 </FormControl>
             </Box >
         </form>
