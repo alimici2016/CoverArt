@@ -23,6 +23,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import './App.css';
 import AddMovieForm from '../AddMovieForm/AddMovieForm';
 import Detail from '../Detail/Detail';
+import SearchForm from '../AddMovieForm/SearchForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -72,7 +73,14 @@ function App() {
 
           <ProtectedRoute path='/form'>
           <AddMovieForm />
+          
           </ProtectedRoute>
+
+          <ProtectedRoute path='/search'>
+          <SearchForm />
+          
+          </ProtectedRoute>
+
 
           <ProtectedRoute path ='/detail/:movies_id'>
           <Detail />

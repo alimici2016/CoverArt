@@ -4,6 +4,7 @@ import user from './user.reducer';
 import MovieObjectReducer from './movieObject.reducer';
 import SingleMovieImpression from './singleMovie.reducer';
 import MovieArrayReducer from './movie.Array.reducer';
+import searchMovieReducer from './search.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   MovieObjectReducer,
   SingleMovieImpression,
-  MovieArrayReducer
+  MovieArrayReducer,
+  searchMovieReducer
 });
 
 export default rootReducer;

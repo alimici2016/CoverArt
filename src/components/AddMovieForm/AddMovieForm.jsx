@@ -60,6 +60,13 @@ function AddMovieForm() {
                 type="text"
                 value={movie.impressions}
             />
+            {/* <input
+                onChange={(event) => handleChange(event, 'like')}
+                type="radio"
+                value={movie.like}
+                name="type"
+                // id="pickup"
+            /> */}
             <Box sx={{ minWidth: 1 }}>
                 <FormControl >
                     <InputLabel variant="standard" htmlFor="uncontrolled-native">

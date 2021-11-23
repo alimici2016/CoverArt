@@ -65,7 +65,18 @@ function* updateImpression(action) {
     } catch {
         yield put({ type: 'UPDATE_ERROR' })
     }
+};
 
+function* searchMovie (action) {
+    try{
+        let search = action.payload
+        console.log(search)
+        const response = yield axios.get(`/api/movies/${search}`)
+        console.log(response.data)
+        yield put ({type: 'SET_SEARCH_MOVIES', payload: response.data})
+    }catch{
+        yield put ({type: 'SEARCH_ERROR'})
+    }
 };
 
 function* MovieSaga() {
@@ -75,6 +86,7 @@ function* MovieSaga() {
     yield takeLatest('ADD_IMPRESSION', addImpression);
     yield takeLatest('ADD_LIKE', addLike);
     yield takeLatest('UPDATE_IMPRESSION', updateImpression)
+    yield takeLatest('SEARCH_MOVIES', searchMovie)
 };
 
 export default MovieSaga;
