@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import ReactCardFlip from 'react-card-flip';
 import { useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 
 function Item({ film }) {
@@ -35,6 +36,9 @@ function Item({ film }) {
     const handleLike = () => {
         dispatch({ type: 'ADD_LIKE', payload: film })
         setIsLiked(!isLiked);
+        if (isLiked === true){
+
+        }
     };
 
     return (
@@ -51,8 +55,11 @@ function Item({ film }) {
                             image={film.image_url}
                             onClick={handleFlip}
                         />
-                        <CardActions>
-                            <FavoriteIcon onClick={handleLike}>Like</FavoriteIcon>
+                        <CardActions> {film?.like ? 
+                            <FavoriteIcon onClick={handleLike} color ='error'>Like</FavoriteIcon> : 
+                            <FavoriteBorderIcon onClick={handleLike}>Like</FavoriteBorderIcon> 
+                            }
+                            
                         </CardActions>
                     </Card>
                 </div>
@@ -69,6 +76,6 @@ function Item({ film }) {
             </ReactCardFlip>
         </>
     )
-};
+}
 
 export default Item;

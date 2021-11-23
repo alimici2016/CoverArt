@@ -83,7 +83,7 @@ router.put('/:id', (req, res) => {
 
   const queryText = `
   UPDATE "movies"
-  SET "like" = 'TRUE'
+  SET "like" = NOT"like"
   WHERE id = $1;`;
   let values = [id]
 

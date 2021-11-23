@@ -52,6 +52,7 @@ function* addLike(action) {
     try {
         console.log(action.payload.id)
         yield axios.put(`/api/movies/${action.payload.id}`)
+        yield put({ type: 'FETCH_MOVIES' });
     } catch {
         yield put({ type: 'UPDATE_ERROR' })
     }
