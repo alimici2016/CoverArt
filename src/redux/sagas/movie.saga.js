@@ -71,7 +71,7 @@ function* searchMovie (action) {
     try{
         let search = action.payload
         console.log(search)
-        const response = yield axios.get(`/api/movies/${search}`)
+        const response = yield axios.get(`/api/search/${search}`)
         console.log(response.data)
         yield put ({type: 'SET_SEARCH_MOVIES', payload: response.data})
     }catch{

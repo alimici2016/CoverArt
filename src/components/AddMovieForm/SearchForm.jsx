@@ -25,7 +25,7 @@ function SearchForm() {
         // history.push('/list')
     };
     return (
-        <div>
+        <>
             <form onSubmit={handleSearch}>
                 <input
                     type="text"
@@ -37,16 +37,12 @@ function SearchForm() {
             </form>
 
             <div>
-                <p>{JSON.stringify(film)}</p>
-                {/* <h1>{film.Title}</h1>
-                <h2>{film.Director}</h2>
-                <p>{film.Genre}</p>
-                <img src={film.Poster} */}
-                {/* >
-
-                </img> */}
+                {JSON.stringify(film)}
+                {/* {film.map((movie => (
+                    <h2>{movie.original_title}</h2>
+                )))} */}
             </div>
-        </div>
+        </>
     );
 }
 export default SearchForm;

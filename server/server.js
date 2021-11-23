@@ -28,7 +28,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/movies', movieRouter);
 app.use('/api/fetchMovies', fetchMovieRouter);
-// app.use('/api/search', searchRouter);
+app.use('/api/search', searchRouter);
 
 // Serve static files
 app.use(express.static('build'));

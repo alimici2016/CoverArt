@@ -2,8 +2,8 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Marker Felt, fantasy';
-  background-color: rgba(232, 221, 248, 0.856);
+  font-family: 'poppins', sans-serif;
+  background-color: var(--primary-color);
 }
 
 #react-root {
@@ -20,6 +20,11 @@ img {
   max-width: 100%;
 }
 
+:root{
+  --primary-color: #FFF0F5;
+  --secondary-color: White;
+  
+}
 /* --------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */

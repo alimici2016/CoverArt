@@ -13,9 +13,27 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import EditIcon from '@mui/icons-material/Edit';
+import DialogTitle from '@mui/material/DialogTitle';
+import Card from '@mui/material/Card';
+import './Detail.css'
 
 
 function Detail() {
+
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const [newImpression, setNewImpression] = useState({
         date: '',
@@ -31,6 +49,10 @@ function Detail() {
     const handleChange = (event, property) => {
         setNewImpression({ ...newImpression, [property]: event.target.value })
     };
+
+    // const handleSubmit = () =>{
+    //     dispatch({ type: 'UPDATE_IMPRESSION', payload:})
+    // }
 
     const addNewImpression = (event) => {
         event.preventDefault();
@@ -53,12 +75,18 @@ function Detail() {
 
     return (
         <>
-            <Paper elevation={4}>
-                <Table sx={{
-                    minWidth: 100,
-                    height: 100
-                }}>
-                    <TableContainer border='1px' border-radius='10px' padding='15px'>
+            <Paper elevation={4} 
+            sx={{
+                mt: 10,
+                ml:55,
+                width: 500,
+                height: 650
+                
+            }}>
+            
+                <Table >
+                   
+                    <TableContainer sx={{ mt: 5, ml: 14}}>
                         <TableHead >
                             <TableRow>
                                 <StyledTableCell>Date</StyledTableCell>
@@ -66,14 +94,37 @@ function Detail() {
                                 <StyledTableCell>Delete</StyledTableCell>
                             </TableRow>
                         </TableHead>
-                        <TableBody>
+                        <TableBody >
                             {impressions.map((impression => (
                                 <TableRow key={impression.id}>
                                     <TableCell>{impression.date?.split('T')[0]}</TableCell>
                                     <TableCell>{impression.impressions}</TableCell>
-                                    <DeleteIcon onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>Delete Impression</DeleteIcon>
+                                    <DeleteIcon fontSize='small' onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>Delete Impression</DeleteIcon>
+                                    <button onClick={handleClickOpen}>
+                                        Edit
+                                    </button>
                                 </TableRow>
                             )))}
+                            <div>
+                                <Dialog open={open} onClose={handleClose}>
+                                    <DialogTitle>Edit Your Impression</DialogTitle>
+                                    <DialogContent>
+                                        <TextField
+                                            autoFocus
+                                            margin="dense"
+                                            id="name"
+                                            label="impression"
+                                            type="email"
+                                            fullWidth
+                                            variant="standard"
+                                        />
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={handleClose}>Cancel</Button>
+                                        <Button>Submit</Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </div>
                         </TableBody>
                     </TableContainer>
                 </Table>
@@ -81,10 +132,12 @@ function Detail() {
                 <div>
                     <form onSubmit={addNewImpression}>
                         <Input onChange={(event) => handleChange(event, 'date')}
+                            sx={{ mt: 9, ml: 14, width: .4}}
                             type="date"
                             value={newImpression.date}
                         />
                         <Input onChange={(event) => handleChange(event, 'impression')}
+                            sx={{ mt: 1, ml: 14, width: .4, height: 100}}
                             placeholder='impression'
                             type="text"
                             value={newImpression.impression}
