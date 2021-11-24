@@ -40,7 +40,7 @@ router.post('/details', (req, res) => {
 
   let impression = req.body.impression
   console.log(impression)
-  
+
   const query = `
   INSERT INTO "impressions" ("date", "movies_id", "impressions")
   VALUES ($1, $2, $3);
@@ -95,7 +95,7 @@ router.put('/:id', (req, res) => {
       console.log(err)
       res.sendStatus(500)
     })
-})
+});
 
 
 module.exports = router;

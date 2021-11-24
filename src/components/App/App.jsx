@@ -24,6 +24,7 @@ import './App.css';
 import AddMovieForm from '../AddMovieForm/AddMovieForm';
 import Detail from '../Detail/Detail';
 import SearchForm from '../AddMovieForm/SearchForm';
+import Wishlist from '../WishList/Wishlist';
 
 function App() {
   const dispatch = useDispatch();
@@ -73,6 +74,11 @@ function App() {
 
           <ProtectedRoute path='/form'>
           <AddMovieForm />
+          
+          </ProtectedRoute>
+
+          <ProtectedRoute path='/wishlist'>
+          <Wishlist />
           
           </ProtectedRoute>
 

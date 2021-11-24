@@ -67,13 +67,19 @@ function* updateImpression(action) {
     }
 };
 
+// function* wishList (action) {
+//     try{
+
+//     }
+// }
+
 function* searchMovie (action) {
     try{
         let search = action.payload
         console.log(search)
         const response = yield axios.get(`/api/search/${search}`)
-        console.log(response.data)
-        yield put ({type: 'SET_SEARCH_MOVIES', payload: response.data})
+        console.log(response.data.results)
+        yield put ({type: 'SET_SEARCH_MOVIES', payload: response.data.results})
     }catch{
         yield put ({type: 'SEARCH_ERROR'})
     }
@@ -87,6 +93,7 @@ function* MovieSaga() {
     yield takeLatest('ADD_LIKE', addLike);
     yield takeLatest('UPDATE_IMPRESSION', updateImpression)
     yield takeLatest('SEARCH_MOVIES', searchMovie)
+    // yield takeLatest('SET_WISHLIST', wishList)
 };
 
 export default MovieSaga;

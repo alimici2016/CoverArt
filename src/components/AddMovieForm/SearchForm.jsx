@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import APIList from "../APIList/APIList";
 
 function SearchForm() {
 
@@ -9,8 +10,6 @@ function SearchForm() {
     const dispatch = useDispatch();
 
     const [searchMovie, setSearchMovie] = useState("");
-
-    const history = useHistory();
 
     const handleChange = (e) => {
         setSearchMovie(e.target.value);
@@ -22,7 +21,7 @@ function SearchForm() {
         dispatch({ type: "SEARCH_MOVIES", payload: searchMovie });
 
         setSearchMovie("");
-        // history.push('/list')
+        // history.push('/wishlist')
     };
     return (
         <>
@@ -37,10 +36,9 @@ function SearchForm() {
             </form>
 
             <div>
-                {JSON.stringify(film)}
-                {/* {film.map((movie => (
-                    <h2>{movie.original_title}</h2>
-                )))} */}
+                {film.map((movie => (
+                  <APIList key={movie.id} movie={movie}/>
+                )))}
             </div>
         </>
     );

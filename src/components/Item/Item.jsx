@@ -37,9 +37,6 @@ function Item({ film }) {
     const handleLike = () => {
         dispatch({ type: 'ADD_LIKE', payload: film })
         setIsLiked(!isLiked);
-        if (isLiked === true){
-
-        }
     };
 
     return (
@@ -62,7 +59,6 @@ function Item({ film }) {
                             <FavoriteIcon onClick={handleLike} color ='error'>Like</FavoriteIcon> : 
                             <FavoriteBorderIcon onClick={handleLike}>Like</FavoriteBorderIcon> 
                             }
-                            
                         </CardActions>
                         </div>
                     </Card>

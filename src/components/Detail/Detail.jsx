@@ -17,9 +17,7 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import EditIcon from '@mui/icons-material/Edit';
 import DialogTitle from '@mui/material/DialogTitle';
-import Card from '@mui/material/Card';
 import './Detail.css'
 
 
@@ -50,10 +48,6 @@ function Detail() {
         setNewImpression({ ...newImpression, [property]: event.target.value })
     };
 
-    // const handleSubmit = () =>{
-    //     dispatch({ type: 'UPDATE_IMPRESSION', payload:})
-    // }
-
     const addNewImpression = (event) => {
         event.preventDefault();
         dispatch({ type: "ADD_IMPRESSION", payload: { ...newImpression, movies_id } })
@@ -83,7 +77,6 @@ function Detail() {
                 height: 650
                 
             }}>
-            
                 <Table >
                    
                     <TableContainer sx={{ mt: 5, ml: 14}}>

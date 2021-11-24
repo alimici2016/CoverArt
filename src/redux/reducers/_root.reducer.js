@@ -5,6 +5,7 @@ import MovieObjectReducer from './movieObject.reducer';
 import SingleMovieImpression from './singleMovie.reducer';
 import MovieArrayReducer from './movie.Array.reducer';
 import searchMovieReducer from './search.reducer';
+import singleSearchMovie from './singlesearchmovie.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   MovieObjectReducer,
   SingleMovieImpression,
   MovieArrayReducer,
-  searchMovieReducer
+  searchMovieReducer,
+  singleSearchMovie
 });
 
 export default rootReducer;
