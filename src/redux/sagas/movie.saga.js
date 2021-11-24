@@ -67,21 +67,37 @@ function* updateImpression(action) {
     }
 };
 
-// function* wishList (action) {
-//     try{
+function* wishList(action) {
+    console.log(action.payload)
+    try {
+        yield axios.post('/api/search', action.payload)
+        console.log(response.data)
+        yield put ({type: 'SET_SINGLE_SEARCH_MOVIE', payload: response.data})
+    } catch {
+        yield put({ type: 'SEARCH_ERROR' })
+    }
+};
 
+// function* addMovieHome() {
+    
+//     try{
+//         yield axios.get('/api/search')
+//         console.log(response)
+//         yield put({type:'SET_MOVIES', payload: response})
+//     }catch {
+//         yield put({ type: 'SEARCH_ERROR' })
 //     }
 // }
 
-function* searchMovie (action) {
-    try{
+function* searchMovie(action) {
+    try {
         let search = action.payload
         console.log(search)
         const response = yield axios.get(`/api/search/${search}`)
         console.log(response.data.results)
-        yield put ({type: 'SET_SEARCH_MOVIES', payload: response.data.results})
-    }catch{
-        yield put ({type: 'SEARCH_ERROR'})
+        yield put({ type: 'SET_SEARCH_MOVIES', payload: response.data.results })
+    } catch {
+        yield put({ type: 'SEARCH_ERROR' })
     }
 };
 
@@ -93,6 +109,7 @@ function* MovieSaga() {
     yield takeLatest('ADD_LIKE', addLike);
     yield takeLatest('UPDATE_IMPRESSION', updateImpression)
     yield takeLatest('SEARCH_MOVIES', searchMovie)
+    yield takeLatest('SET_WISHLIST', wishList)
     // yield takeLatest('SET_WISHLIST', wishList)
 };
 

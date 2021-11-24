@@ -17,4 +17,22 @@ router.get('/:search', (req, res) => {
       console.log('Error in get', err);
     });
 });
+
+router.post('/', (req, res) => {
+  const query = `
+  INSERT INTO "wish_list" ("release_date", "title", "poster_path", "overview")
+  VALUES ($1, $2, $3, $4);
+  `;
+  console
+  pool.query(query, [req.body.release_date, req.body.title, req.body.poster_path, req.body.overview])
+    .then(result => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+    })
+})
+
+
 module.exports = router;
