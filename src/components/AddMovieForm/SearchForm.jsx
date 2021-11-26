@@ -23,7 +23,6 @@ function SearchForm() {
         dispatch({ type: "SEARCH_MOVIES", payload: searchMovie });
 
         setSearchMovie("");
-        // history.push('/home')
     };
     return (
         <>

@@ -14,9 +14,10 @@ function Wishlist() {
 
     return (
         <>
+            <h3>Welcome to your Wishlist</h3>
             {apiMovie.map((movie => (
-            <WishlistItem key={movie.id} movie={movie}/>
-              )))}
+                <WishlistItem key={movie.id} movie={movie} />
+            )))}
         </>
     )
 }

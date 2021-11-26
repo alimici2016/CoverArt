@@ -24,7 +24,7 @@ function APIList ({movie}) {
         console.log('clicked')
         dispatch({type: 'SET_WISHLIST' , payload: movie})
         dispatch({type: 'SET_SINGLE_SEARCH_MOVIE' , payload: movie})
-        history.push('/home')
+        history.push('/wishlist')
     }
 
     return(

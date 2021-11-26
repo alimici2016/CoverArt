@@ -10,6 +10,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CircleIcon from '@mui/icons-material/Circle';
 import { red } from '@mui/material/colors';
+import { orange } from '@mui/material/colors';
 import './Item.css'
 
 
@@ -79,6 +80,7 @@ function Item({ film }) {
                     {film.streaming_service === 'Hulu' && <CircleIcon color="success"/>}
                     {film.streaming_service === 'Theater' && <CircleIcon sx={{ color: [500] }}/>}
                     {film.streaming_service === 'Netflix' && <CircleIcon sx={{ color: red[700] }}/>}
+                    {film.streaming_service === 'NULL' && <CircleIcon  sx={{ color: orange[700] }}/>} 
                     <h3> {film.title}</h3>
                     <h5> Director: {film.director}</h5>
                     <h5> Genre: {film.genre}</h5>
