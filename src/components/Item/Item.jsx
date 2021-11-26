@@ -41,6 +41,10 @@ function Item({ film }) {
         setIsLiked(!isLiked);
     };
 
+    const handleBack = () => {
+        history.push('/home')
+    }
+
     return (
         <>
 
@@ -80,8 +84,9 @@ function Item({ film }) {
                     <h5> Genre: {film.genre}</h5>
                     </div>
                     <CardActions className="buttons">
-                        <Button onClick={handleClick} size="small" align='center'>Previous</Button>
+                        <Button onClick={handleClick} size="small" align='center'>Impressions</Button>
                         <Button onClick={handleDelete} size="small" align='center'>Delete</Button>
+                        <Button onClick={handleBack} size="small" align='center'>Back</Button>
                     </CardActions>
                 </Card>
             </ReactCardFlip>

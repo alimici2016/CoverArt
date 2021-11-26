@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Input from '@mui/material/Input';
 import Table from '@mui/material/Table';
@@ -22,6 +22,8 @@ import './Detail.css'
 
 
 function Detail() {
+
+    const history = useHistory();
 
     const [open, setOpen] = useState(false);
 
@@ -67,8 +69,14 @@ function Detail() {
         },
     }));
 
+    const handleBack = () => {
+        history.push('/home')
+    }
+
     return (
         <>
+
+        <Button onClick={handleBack}>Home</Button>
             <Paper elevation={4} 
             sx={{
                 mt: 10,
@@ -124,7 +132,7 @@ function Detail() {
 
                 <div>
                     <form onSubmit={addNewImpression}>
-                        <Input onChange={(event) => handleChange(event, 'date')}
+                        <Input onChange={(event) => handleChange(event, 'date') }
                             sx={{ mt: 9, ml: 14, width: .4}}
                             type="date"
                             value={newImpression.date}

@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
+import Button from '@mui/material/Button';
 
 function AddMovieForm() {
 
@@ -34,72 +35,79 @@ function AddMovieForm() {
         history.push('/')
     };
 
-    return (
-        <form onSubmit={addMovie}>
-            <Input onChange={(event) => handleChange(event, 'date')}
-                type="date"
-                value={movie.date}
-            />
-            <Input onChange={(event) => handleChange(event, 'title')}
-                placeholder='title'
-                type="text"
-                value={movie.title}
-            />
-            <Input onChange={(event) => handleChange(event, 'image_url')}
-                placeholder='image_url'
-                type="text"
-                value={movie.image_url}
-            />
+    const handleBack = () => {
+        history.push('/home')
+    }
 
-            <Input onChange={(event) => handleChange(event, 'director')}
-                placeholder='director'
-                type="text"
-                value={movie.director}
-            />
-            <Input onChange={(event) => handleChange(event, 'impressions')}
-                placeholder='impression'
-                type="text"
-                value={movie.impressions}
-            />
-            <InputLabel variant="standard" htmlFor="uncontrolled-native">
-            </InputLabel>
-            <NativeSelect
-                onChange={(event) => handleChange(event, 'streaming_service')}>
-                <option value="">Choose Streaming Service</option>
-                <option value='Theater'>Theater</option>
-                <option value='Criterion'>Criterion</option>
-                <option value='Hbo Max'>HBO Max</option>
-                <option value='Netflix'>Netflix</option>
-                <option value='Hulu'>Hulu</option>
-                <option value='Amazon Prime'>Amazon Prime</option>
-            </NativeSelect>
-            <Box sx={{ minWidth: 1 }}>
-                <FormControl >
-                    <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                    </InputLabel>
-                    <NativeSelect
-                        onChange={(event) => handleChange(event, 'genre')}>
-                        <option value="">Choose Genre</option>
-                        <option value='Adventure'>Adventure</option>
-                        <option value='Animated'>Animated</option>
-                        <option value='Biographical'>Biographical</option>
-                        <option value='Comedy'>Comedy</option>
-                        <option value='Crime'>Crime</option>
-                        <option value='Thriller'>Thriller</option>
-                        <option value='Disaster'>Disaster</option>
-                        <option value='Drama'>Drama</option>
-                        <option value='Epic'>Epic</option>
-                        <option value='Fantasy'>Fantasy</option>
-                        <option value='Musical'>Musical</option>
-                        <option value='Romantic'>Romantic</option>
-                        <option value='Science Fiction'>Science Fiction</option>
-                        <option value='Space-Opera'>Space-Opera</option>
-                        <option value='Superhero'>Superhero</option>
-                    </NativeSelect>
-                    <button disabled={movie.impressions == '' || movie.title == ''} type="submit">Save</button>
-                </FormControl>
-            </Box >
-        </form>
+    return (
+        <>
+            <Button onClick={handleBack}>Home</Button>
+            <form onSubmit={addMovie}>
+                <Input onChange={(event) => handleChange(event, 'date')}
+                    type="date"
+                    value={movie.date}
+                />
+                <Input onChange={(event) => handleChange(event, 'title')}
+                    placeholder='title'
+                    type="text"
+                    value={movie.title}
+                />
+                <Input onChange={(event) => handleChange(event, 'image_url')}
+                    placeholder='image_url'
+                    type="text"
+                    value={movie.image_url}
+                />
+
+                <Input onChange={(event) => handleChange(event, 'director')}
+                    placeholder='director'
+                    type="text"
+                    value={movie.director}
+                />
+                <Input onChange={(event) => handleChange(event, 'impressions')}
+                    placeholder='impression'
+                    type="text"
+                    value={movie.impressions}
+                />
+                <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                </InputLabel>
+                <NativeSelect
+                    onChange={(event) => handleChange(event, 'streaming_service')}>
+                    <option value="">Choose Streaming Service</option>
+                    <option value='Theater'>Theater</option>
+                    <option value='Criterion'>Criterion</option>
+                    <option value='Hbo Max'>HBO Max</option>
+                    <option value='Netflix'>Netflix</option>
+                    <option value='Hulu'>Hulu</option>
+                    <option value='Amazon Prime'>Amazon Prime</option>
+                </NativeSelect>
+                <Box sx={{ minWidth: 1 }}>
+                    <FormControl >
+                        <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                        </InputLabel>
+                        <NativeSelect
+                            onChange={(event) => handleChange(event, 'genre')}>
+                            <option value="">Choose Genre</option>
+                            <option value='Adventure'>Adventure</option>
+                            <option value='Animated'>Animated</option>
+                            <option value='Biographical'>Biographical</option>
+                            <option value='Comedy'>Comedy</option>
+                            <option value='Crime'>Crime</option>
+                            <option value='Thriller'>Thriller</option>
+                            <option value='Disaster'>Disaster</option>
+                            <option value='Drama'>Drama</option>
+                            <option value='Epic'>Epic</option>
+                            <option value='Fantasy'>Fantasy</option>
+                            <option value='Musical'>Musical</option>
+                            <option value='Romantic'>Romantic</option>
+                            <option value='Science Fiction'>Science Fiction</option>
+                            <option value='Space-Opera'>Space-Opera</option>
+                            <option value='Superhero'>Superhero</option>
+                        </NativeSelect>
+                        <button disabled={movie.impressions == '' || movie.title == ''} type="submit">Save</button>
+                    </FormControl>
+                </Box >
+            </form>
+        </>
     )
 };
 

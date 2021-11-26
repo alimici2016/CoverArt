@@ -5,6 +5,8 @@ import APIList from "../APIList/APIList";
 
 function SearchForm() {
 
+    const history = useHistory();
+
     const film = useSelector(store => store.searchMovieReducer)
 
     const dispatch = useDispatch();
@@ -21,7 +23,7 @@ function SearchForm() {
         dispatch({ type: "SEARCH_MOVIES", payload: searchMovie });
 
         setSearchMovie("");
-        // history.push('/wishlist')
+        // history.push('/home')
     };
     return (
         <>

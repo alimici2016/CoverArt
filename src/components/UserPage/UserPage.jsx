@@ -33,17 +33,12 @@ function UserPage() {
           )))}
         </div>
 
-        <div>
+        {/* <div>
           {apiMovie.map((movie => (
-            // <Wishlist key={}/>
-            <div key={movie.id}>
-              <h5>{movie.title}</h5>
-              <img src={movie.poster_path} />
-              <p>{movie.overview}</p>
-            </div>
+            <Wishlist key={movie.id} movie={movie}/>
           )))}
 
-        </div>
+        </div> */}
         <LogOutButton className="btn" />
       </div >
     </>
