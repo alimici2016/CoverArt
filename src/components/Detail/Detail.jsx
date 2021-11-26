@@ -80,19 +80,17 @@ function Detail() {
             <Paper elevation={4} 
             sx={{
                 mt: 10,
-                ml:55,
-                width: 500,
-                height: 650
+                ml:40,
+                width: 800,
+                height: 1500
                 
             }}>
                 <Table >
-                   
-                    <TableContainer sx={{ mt: 5, ml: 14}}>
+                    <TableContainer sx={{ mt: 5, ml: 37}}>
                         <TableHead >
                             <TableRow>
                                 <StyledTableCell>Date</StyledTableCell>
                                 <StyledTableCell>Impressions</StyledTableCell>
-                                <StyledTableCell>Delete</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody >
@@ -100,10 +98,9 @@ function Detail() {
                                 <TableRow key={impression.id}>
                                     <TableCell>{impression.date?.split('T')[0]}</TableCell>
                                     <TableCell>{impression.impressions}</TableCell>
-                                    <DeleteIcon fontSize='small' onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>Delete Impression</DeleteIcon>
-                                    <button onClick={handleClickOpen}>
-                                        Edit
-                                    </button>
+                                    <DeleteIcon sx={{mb:1}}fontSize='small' onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>Delete Impression</DeleteIcon>
+                                    {/* <button onClick={handleClickOpen}>
+                                    </button> */}
                                 </TableRow>
                             )))}
                             <div>
@@ -133,12 +130,14 @@ function Detail() {
                 <div>
                     <form onSubmit={addNewImpression}>
                         <Input onChange={(event) => handleChange(event, 'date') }
-                            sx={{ mt: 9, ml: 14, width: .4}}
+                            sx={{ mt: 9, ml: 36, width: .3 }}
                             type="date"
                             value={newImpression.date}
                         />
-                        <Input onChange={(event) => handleChange(event, 'impression')}
-                            sx={{ mt: 1, ml: 14, width: .4, height: 100}}
+                        <TextField onChange={(event) => handleChange(event, 'impression')}
+                            multiline={true}
+                            rows={14}
+                            sx={{ mt: 1, ml: 16, width: .7, height: 100}}
                             placeholder='impression'
                             type="text"
                             value={newImpression.impression}

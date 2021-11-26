@@ -52,7 +52,6 @@ router.post('/:details', (req, res) => {
     })
 });
 
-
 router.delete('/:id', (req, res) => {
   let id = req.params.id
   console.log(id)
@@ -68,7 +67,6 @@ router.delete('/:id', (req, res) => {
       res.sendStatus(500)
     })
 });
-
 
 router.get('/', (req, res) => {
   const query = ` SELECT * FROM "wish_list";`;

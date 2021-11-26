@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
+import { TextField } from '@mui/material/TextField';
 
 function DetailItem({ impression }) {
 
@@ -22,19 +22,24 @@ function DetailItem({ impression }) {
         setNewImpression({ ...newImpression, [property]: event.target.value })
     };
 
-    console.log(impressions.movie_id)
-    console.log(impression.impression)
+    // console.log(impressions.movie_id)
+    // console.log(impression.impression)
 
     return (
         <>
 
             <div>
                 <form onSubmit={addImpression}>
-                    <input onChange={(event) => handleChange(event, 'date')}
+                    <TextField 
+                        multiline={true}
+                        rows={10}
+                        onChange={(event) => handleChange(event, 'date')}
                         type="date"
                         value={newImpression.date}
                     />
-                    <input onChange={(event) => handleChange(event, 'impression')}
+                    <TextField onChange={(event) => handleChange(event, 'impression')}
+                        multiline={true}
+                        rows={10}
                         placeholder='impression'
                         type="text"
                         value={newImpression.impression}
@@ -49,7 +54,6 @@ function DetailItem({ impression }) {
                     {impression.director}
                     {impression.impression}
                     <button onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression.impression})}>DELETE Impression</button>
-                    {/* <button onClick={() => dispatch({ type: 'ADD_IMPRESSION', payload: impression.movies_id, newImpression })}> Impression</button> */}
                 </td>
             </div>
         </>

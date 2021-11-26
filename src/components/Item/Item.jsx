@@ -56,7 +56,7 @@ function Item({ film }) {
     const disneyPlus = film.streaming_service == 'Disney Plus' && <CircleIcon sx={{ color: blue[900] }} />
     const nullMovie = film.streaming_service == 'null' && <CircleIcon sx={{ color: orange[700] }} />
 
-    
+
 
     return (
         <>
@@ -72,28 +72,32 @@ function Item({ film }) {
                                     height="225"
                                     margin='15'
                                     image={film.image_url}
-                                    // onClick={handleFlip}
                                 />
                             </div>
                             <div className="image_overlay" onClick={handleFlip}>
                                 <h5 className="image_description">{film.description}</h5>
                             </div>
-                            <CardActions> {film?.like ?
-                                <FavoriteIcon onClick={handleLike} color='error'>Like</FavoriteIcon> :
-                                <FavoriteBorderIcon onClick={handleLike}>Like</FavoriteBorderIcon>
-                            }
+
+                            <CardActions>
+                                <Tooltip title="like">
+                                    {film?.like ?
+                                        <FavoriteIcon onClick={handleLike} color='error'>Like</FavoriteIcon> :
+                                        <FavoriteBorderIcon onClick={handleLike}>Like</FavoriteBorderIcon>
+                                    }
+                                </Tooltip>
                             </CardActions>
+
                         </div>
                     </Card>
                 </div>
 
                 <Card sx={{ width: 280, margin: 2, padding: 5 }} className='card'>
-                <Tooltip title="STREAMING ON" >
-                    <div className="movie-info" onClick={handleBack}>
-                        {prime}{hboMax}{hulu}{netflix}{nullMovie}{theater}{criterion}{disneyPlus}
-                        <h5> Director: {film.director}</h5>
-                        <h5> Genre: {film.genre}</h5>
-                    </div>
+                    <Tooltip title="STREAMING ON" >
+                        <div className="movie-info" onClick={handleBack}>
+                            {prime}{hboMax}{hulu}{netflix}{nullMovie}{theater}{criterion}{disneyPlus}
+                            <h5> Director: {film.director}</h5>
+                            <h5> Genre: {film.genre}</h5>
+                        </div>
                     </Tooltip>
                     <CardActions className="buttons">
                         <Button onClick={handleClick} size="small" align='center'>Impressions</Button>

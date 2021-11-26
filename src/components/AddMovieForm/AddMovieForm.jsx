@@ -62,23 +62,23 @@ function AddMovieForm() {
                     value={movie.date}
                 />
                 <Input onChange={(event) => handleChange(event, 'title')}
-                    placeholder='title'
+                    placeholder='Title'
                     type="text"
                     value={movie.title}
                 />
                 <Input onChange={(event) => handleChange(event, 'image_url')}
-                    placeholder='image_url'
+                    placeholder='Image'
                     type="text"
                     value={movie.image_url}
                 />
 
                 <Input onChange={(event) => handleChange(event, 'director')}
-                    placeholder='director'
+                    placeholder='Director'
                     type="text"
                     value={movie.director}
                 />
                 <Input onChange={(event) => handleChange(event, 'impressions')}
-                    placeholder='impression'
+                    placeholder='Impression'
                     type="text"
                     value={movie.impressions}
                 />
