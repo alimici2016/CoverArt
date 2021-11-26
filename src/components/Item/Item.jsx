@@ -8,6 +8,7 @@ import ReactCardFlip from 'react-card-flip';
 import { useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import CircleIcon from '@mui/icons-material/Circle';
 import './Item.css'
 
 
@@ -47,6 +48,7 @@ function Item({ film }) {
                     <Card sx={{ width: 300, margin: 2, padding: 5 }} >
                         <div >
                         <h6> {film.title}</h6>
+                        
                         <CardMedia
                             className="card"
                             component="img"
@@ -66,6 +68,7 @@ function Item({ film }) {
 
                 <Card sx={{ width: 280, margin: 2, padding: 5 }} className='card'>
                     <div className="movie-info">
+                    <CircleIcon color="primary" />
                     <h3> {film.title}</h3>
                     <h5> Director: {film.director}</h5>
                     <h5> Genre: {film.genre}</h5>

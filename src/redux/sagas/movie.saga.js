@@ -78,16 +78,15 @@ function* wishList(action) {
     }
 };
 
-// function* addMovieHome() {
-    
-//     try{
-//         yield axios.get('/api/search')
-//         console.log(response)
-//         yield put({type:'SET_MOVIES', payload: response})
-//     }catch {
-//         yield put({ type: 'SEARCH_ERROR' })
-//     }
-// }
+function* addMovieHome() {
+    try{
+       const response = yield axios.get('/api/search')
+        console.log('api response', response.data)
+        yield put({type:'SET_SINGLE_API_MOVIE', payload: response.data})
+    }catch {
+        yield put({ type: 'SEARCH_ERROR_API' })
+    }
+}
 
 function* searchMovie(action) {
     try {
@@ -110,7 +109,7 @@ function* MovieSaga() {
     yield takeLatest('UPDATE_IMPRESSION', updateImpression)
     yield takeLatest('SEARCH_MOVIES', searchMovie)
     yield takeLatest('SET_WISHLIST', wishList)
-    // yield takeLatest('SET_WISHLIST', wishList)
+    yield takeLatest('FETCH_API_MOVIE', addMovieHome)
 };
 
 export default MovieSaga;

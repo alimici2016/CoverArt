@@ -32,6 +32,18 @@ router.post('/', (req, res) => {
       console.log(err);
       res.sendStatus(500)
     })
+});
+
+router.get('/', (req, res) => {
+  const query = ` SELECT * FROM "wish_list";`;
+  pool.query(query)
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: Get all movies', err);
+      res.sendStatus(500)
+    })
 })
 
 

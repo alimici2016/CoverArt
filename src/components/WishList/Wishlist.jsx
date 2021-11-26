@@ -8,6 +8,7 @@ import ReactCardFlip from 'react-card-flip';
 
 function Wishlist() {
 
+    // const apiMovie = useSelector(store => store.apiReducer)
     const apiMovie = useSelector(store => store.singleSearchMovie)
 
     const dispatch = useDispatch()
@@ -16,11 +17,9 @@ function Wishlist() {
 
     const handleFlip = () => {
         setIsFlipped(!isFlipped);
-    };
+    };    
 
-        
-
-
+    
     return (
 
         <>
