@@ -34,6 +34,24 @@ router.post('/', (req, res) => {
     })
 });
 
+router.post('/:details', (req, res) => {
+  console.log(req.body)
+  const query = `
+  INSERT INTO "movies" ("title", "image_url")
+  VALUES ($1, $2)
+  RETURNING "id";`;
+  console.log(req.body.movieTitle)
+  pool.query(query, [req.body.movieTitle, req.body.movieImage])
+    .then(result => {
+      console.log(result)
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+    })
+});
+
 router.get('/', (req, res) => {
   const query = ` SELECT * FROM "wish_list";`;
   pool.query(query)

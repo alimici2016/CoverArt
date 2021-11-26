@@ -4,9 +4,12 @@ import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux'
+import './WishlistItem.css'
 
 function WishlistItem({ movie }) {
 
+    const dispatch = useDispatch()
 
     const [isFlipped, setIsFlipped] = useState(false);
 
@@ -17,14 +20,15 @@ function WishlistItem({ movie }) {
 
     const movieImage =  'https://image.tmdb.org/t/p/w500' + apiMovieImage
 
+    const movieTitle = movie.title
 
+    const postApiMovie = () =>{ dispatch({type: 'ADD_API_MOVIE_TO_DB', payload: {movieImage, movieTitle}})}
 
     return (
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-            <div >
-                <Card sx={{ width: 300, margin: 2, padding: 5 }} >
+            <div>
+                <Card sx={{ width: 300, margin: 2, padding: 5 }} className='card'>
                     <div >
-                        <h6> {JSON.stringify(movie.title)}</h6>
                         <CardMedia
                             className="card"
                             component="img"
@@ -43,6 +47,9 @@ function WishlistItem({ movie }) {
                     <h6>{movie.release_date}</h6>
                     <p> {movie.overview}</p>
                 </div>
+                <CardActions className="buttons">
+                <Button onClick={postApiMovie} size="small" align='center'>Watched</Button>
+                </CardActions>
             </Card>
         </ReactCardFlip>
     )

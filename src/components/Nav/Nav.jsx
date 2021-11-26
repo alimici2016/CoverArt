@@ -33,6 +33,9 @@ function Nav() {
             <Link className="navLink" to="/search">
               Search Movie
             </Link>
+            <Link className="navLink" to="/wishlist">
+              Wish List
+            </Link>
 
             <Link className="navLink" to="/info">
               Info Page

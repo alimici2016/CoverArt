@@ -72,18 +72,18 @@ function* wishList(action) {
     try {
         yield axios.post('/api/search', action.payload)
         console.log(response.data)
-        yield put ({type: 'SET_SINGLE_SEARCH_MOVIE', payload: response.data})
+        yield put({ type: 'SET_SINGLE_SEARCH_MOVIE', payload: response.data })
     } catch {
         yield put({ type: 'SEARCH_ERROR' })
     }
 };
 
 function* addMovieHome() {
-    try{
-       const response = yield axios.get('/api/search')
+    try {
+        const response = yield axios.get('/api/search')
         console.log('api response', response.data)
-        yield put({type:'SET_SINGLE_API_MOVIE', payload: response.data})
-    }catch {
+        yield put({ type: 'SET_SINGLE_API_MOVIE', payload: response.data })
+    } catch {
         yield put({ type: 'SEARCH_ERROR_API' })
     }
 }
@@ -100,6 +100,18 @@ function* searchMovie(action) {
     }
 };
 
+function* postApiMovie(action) {
+    console.log(action.payload)
+    try {
+        yield axios.post('/api/search/details', action.payload)
+        console.log(response.data)
+        yield put({ type: 'FETCH_MOVIES' });
+    } catch (error) {
+        console.log('ERROR IN POST', error);
+        yield put({ type: 'POST_ERROR' })
+    }
+};
+
 function* MovieSaga() {
     yield takeLatest('FETCH_MOVIES', fetchMovies);
     yield takeLatest('ADD_MOVIE', addMovie);
@@ -110,6 +122,7 @@ function* MovieSaga() {
     yield takeLatest('SEARCH_MOVIES', searchMovie)
     yield takeLatest('SET_WISHLIST', wishList)
     yield takeLatest('FETCH_API_MOVIE', addMovieHome)
+    yield takeLatest('ADD_API_MOVIE_TO_DB', postApiMovie)
 };
 
 export default MovieSaga;
