@@ -22,6 +22,7 @@ function AddMovieForm() {
         director: '',
         impressions: '',
         streaming_service: '',
+        description: '',
     });
 
     const handleChange = (event, property) => {
@@ -39,8 +40,21 @@ function AddMovieForm() {
         history.push('/home')
     }
 
+    const fillIn = () => {
+        setMovie({
+            title: 'Inside Out',
+            genre: 'Family',
+            image_url: 'https://upload.wikimedia.org/wikipedia/en/0/0a/Inside_Out_%282015_film%29_poster.jpg',
+            director: 'Pete Docter',
+            impressions: 'Great',
+            description: 'Riley (Kaitlyn Dias) is a happy, hockey-loving 11-year-old Midwestern girl, but her world turns upside-down when she and her parents move to San Francisco. Rileys emotions -- led by Joy (Amy Poehler) -- try to guide her through this difficult, life-changing event. However, the stress of the move brings Sadness (Phyllis Smith) to the forefront. When Joy and Sadness are inadvertently swept into the far reaches of Rileys mind, the only emotions left in Headquarters are Anger, Fear and Disgust.',
+            like: 'false'
+        })
+    };
+
     return (
         <>
+            <button onClick={fillIn}>Fill in </button>
             <Button onClick={handleBack}>Home</Button>
             <form onSubmit={addMovie}>
                 <Input onChange={(event) => handleChange(event, 'date')}
@@ -78,6 +92,7 @@ function AddMovieForm() {
                     <option value='Hbo Max'>HBO Max</option>
                     <option value='Netflix'>Netflix</option>
                     <option value='Hulu'>Hulu</option>
+                    <option value='Disney Plus'>Disney Plus</option>
                     <option value='Amazon Prime'>Amazon Prime</option>
                 </NativeSelect>
                 <Box sx={{ minWidth: 1 }}>

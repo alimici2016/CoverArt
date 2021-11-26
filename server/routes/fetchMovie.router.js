@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
+const { Description } = require('@mui/icons-material');
 
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
@@ -31,11 +32,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/', (req, res) => {
   // POST route code here
   const movieQuery = `
-    INSERT INTO "movies" ("title", "genre", "image_url", "like", "director", "streaming_service")
-    VALUES ($1, $2, $3, $4, $5, $6)
+    INSERT INTO "movies" ("title", "genre", "image_url", "like", "director", "streaming_service", "description")
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING "id";`;
 
-  pool.query(movieQuery, [req.body.title, req.body.genre, req.body.image_url, req.body.like, req.body.director, req.body.streaming_service])
+  pool.query(movieQuery, [req.body.title, req.body.genre, req.body.image_url, req.body.like, req.body.director, req.body.streaming_service, req.body.description])
     .then(result => {
       console.log('new row here', result.rows[0].id)
 
