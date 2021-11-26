@@ -52,6 +52,24 @@ router.post('/:details', (req, res) => {
     })
 });
 
+
+router.delete('/:id', (req, res) => {
+  let id = req.params.id
+  console.log(id)
+  const query = `
+  DELETE FROM "wishlist" 
+  WHERE id = $1;`;
+  let values = [id]
+  pool.query(queryText, values)
+    .then(results => {
+      res.sendStatus(204)
+    }).catch(err => {
+      console.log(err)
+      res.sendStatus(500)
+    })
+});
+
+
 router.get('/', (req, res) => {
   const query = ` SELECT * FROM "wish_list";`;
   pool.query(query)

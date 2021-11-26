@@ -19,6 +19,9 @@ function APIList ({movie}) {
     const handleFlip = () => {
         setIsFlipped(!isFlipped);
     };
+    const apiMovieImage = movie.poster_path
+
+    const movieImage = 'https://image.tmdb.org/t/p/w500' + apiMovieImage
 
     const handleClick = () => {
         console.log('clicked')
@@ -39,7 +42,7 @@ function APIList ({movie}) {
                     component="img"
                     height="225"
                     margin='15'
-                    image={movie.poster_path}
+                    image={movieImage}
                     onClick={handleFlip}
                 />
                 </div>

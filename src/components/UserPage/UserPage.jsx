@@ -10,7 +10,6 @@ function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const films = useSelector(store => store.MovieArrayReducer);
-  const apiMovie = useSelector(store => store.apiReducer)
 
   const dispatch = useDispatch();
 
@@ -24,23 +23,15 @@ function UserPage() {
     <>
       <div>
         <h2>Welcome, {user.username}!</h2>
-        <p>Your ID is: {user.id}</p>
+        <h4 className="title">This is your Movie Collection</h4>
 
-        {/* <p>{JSON.stringify(apiMovie)}</p> */}
         <div className="container">
           {films.map((film => (
             <Item key={film.id} film={film} />
           )))}
         </div>
-
-        {/* <div>
-          {apiMovie.map((movie => (
-            <Wishlist key={movie.id} movie={movie}/>
-          )))}
-
-        </div> */}
+        </div> 
         <LogOutButton className="btn" />
-      </div >
     </>
   )
 };

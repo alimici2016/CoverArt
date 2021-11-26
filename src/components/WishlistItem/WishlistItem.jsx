@@ -26,7 +26,8 @@ function WishlistItem({ movie }) {
     const movieTitle = movie.title
 
     const postApiMovie = () => {
-        dispatch({ type: 'ADD_API_MOVIE_TO_DB', payload: { movieImage, movieTitle } })
+        dispatch({ type: 'ADD_API_MOVIE_TO_DB', payload: { movieImage, movieTitle }})
+        dispatch({ type: 'DELETE_API_MOVIE', payload: movie.id })
         history.push('/home')
     }
 
@@ -48,7 +49,6 @@ function WishlistItem({ movie }) {
                         </div>
                     </Card>
                 </div>
-
                 <Card sx={{ width: 280, margin: 2, padding: 5 }} className='card'>
                     <div className="movie-info">
                         <h5> {movie.title}</h5>

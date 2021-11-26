@@ -22,9 +22,22 @@ function* deleteImpression(action) {
   }
 };
 
+// function* deleteApiMovie(action) {
+//   console.log(action.payload)
+//   try {
+//       yield axios.delete('/api/search/details', action.payload)
+//       console.log(response.data)
+//       yield put({ type: 'FETCH_API_MOVIES' });
+//   } catch (error) {
+//       console.log('ERROR IN POST', error);
+//       yield put({ type: 'POST_ERROR' })
+//   }
+// };
+
 function* deleteSaga() {
   yield takeLatest('DELETE_MOVIE', deleteMovie)
   yield takeLatest('DELETE_IMPRESSION', deleteImpression)
+  // yield takeLatest ('DELETE_API_MOVIE', deleteApiMovie)
 };
 
 export default deleteSaga;
