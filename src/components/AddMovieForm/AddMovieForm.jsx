@@ -20,6 +20,7 @@ function AddMovieForm() {
         image_url: '',
         director: '',
         impressions: '',
+        streaming_service: '',
     });
 
     const handleChange = (event, property) => {
@@ -60,13 +61,18 @@ function AddMovieForm() {
                 type="text"
                 value={movie.impressions}
             />
-            {/* <input
-                onChange={(event) => handleChange(event, 'like')}
-                type="radio"
-                value={movie.like}
-                name="type"
-                // id="pickup"
-            /> */}
+            <InputLabel variant="standard" htmlFor="uncontrolled-native">
+            </InputLabel>
+            <NativeSelect
+                onChange={(event) => handleChange(event, 'streaming_service')}>
+                <option value="">Choose Streaming Service</option>
+                <option value='Theater'>Theater</option>
+                <option value='Criterion'>Criterion</option>
+                <option value='Hbo Max'>HBO Max</option>
+                <option value='Netflix'>Netflix</option>
+                <option value='Hulu'>Hulu</option>
+                <option value='Amazon Prime'>Amazon Prime</option>
+            </NativeSelect>
             <Box sx={{ minWidth: 1 }}>
                 <FormControl >
                     <InputLabel variant="standard" htmlFor="uncontrolled-native">
