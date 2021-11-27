@@ -4,7 +4,6 @@ import { TextField } from '@mui/material/TextField';
 
 function DetailItem({ impression }) {
 
-
     const [newImpression, setNewImpression] = useState({
         date: '',
         impression: ''

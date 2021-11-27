@@ -7,6 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import Button from '@mui/material/Button';
+import  TextField from "@mui/material/TextField";
 
 function AddMovieForm() {
 
@@ -61,27 +62,36 @@ function AddMovieForm() {
                     type="date"
                     value={movie.date}
                 />
-                <Input onChange={(event) => handleChange(event, 'title')}
+                <TextField onChange={(event) => handleChange(event, 'title')}
                     placeholder='Title'
                     type="text"
                     value={movie.title}
                 />
-                <Input onChange={(event) => handleChange(event, 'image_url')}
+                
+                <TextField onChange={(event) => handleChange(event, 'director')}
+                    placeholder='Director'
+                    sx={{ ml: 30 }}
+                    type="text"
+                    value={movie.director}
+                />
+                <TextField onChange={(event) => handleChange(event, 'image_url')}
+                    multiline={true}
+                    rows={3}
+                    sx={{ mt: 20}}
                     placeholder='Image'
                     type="text"
                     value={movie.image_url}
                 />
-
-                <Input onChange={(event) => handleChange(event, 'director')}
-                    placeholder='Director'
-                    type="text"
-                    value={movie.director}
-                />
-                <Input onChange={(event) => handleChange(event, 'impressions')}
+                <div className="box">
+                <TextField onChange={(event) => handleChange(event, 'impressions')}
+                    multiline={true}
+                    rows={15}
+                    sx={{ mt: 0, ml: 50, width: .4, height: 60}}
                     placeholder='Impression'
                     type="text"
                     value={movie.impressions}
                 />
+                </div>
                 <InputLabel variant="standard" htmlFor="uncontrolled-native">
                 </InputLabel>
                 <NativeSelect

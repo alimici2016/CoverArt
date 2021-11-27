@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
-const { Description } = require('@mui/icons-material');
+
 
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here

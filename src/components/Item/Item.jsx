@@ -47,6 +47,7 @@ function Item({ film }) {
     const handleBack = () => {
         history.push('/home')
     }
+    
     const prime = film.streaming_service === 'Amazon Prime' && <CircleIcon color="primary" />
     const hboMax = film.streaming_service === 'Hbo Max' && <CircleIcon color="secondary" />
     const criterion = film.streaming_service === 'Criterion' && <CircleIcon color="disabled" />
@@ -55,8 +56,6 @@ function Item({ film }) {
     const netflix = film.streaming_service === 'Netflix' && <CircleIcon sx={{ color: red[700] }} />
     const disneyPlus = film.streaming_service == 'Disney Plus' && <CircleIcon sx={{ color: blue[900] }} />
     const nullMovie = film.streaming_service == 'null' && <CircleIcon sx={{ color: orange[700] }} />
-
-
 
     return (
         <>
