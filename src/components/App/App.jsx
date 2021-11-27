@@ -21,6 +21,10 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
+import AddMovieForm from '../AddMovieForm/AddMovieForm';
+import Detail from '../Detail/Detail';
+import SearchForm from '../AddMovieForm/SearchForm';
+import Wishlist from '../WishList/Wishlist';
 
 function App() {
   const dispatch = useDispatch();
@@ -67,6 +71,27 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
+
+          <ProtectedRoute path='/form'>
+          <AddMovieForm />
+          
+          </ProtectedRoute>
+
+          <ProtectedRoute path='/wishlist'>
+          <Wishlist />
+          
+          </ProtectedRoute>
+
+          <ProtectedRoute path='/search'>
+          <SearchForm />
+          
+          </ProtectedRoute>
+
+
+          <ProtectedRoute path ='/detail/:movies_id'>
+          <Detail />
+          </ProtectedRoute>
+
 
           <Route
             exact
