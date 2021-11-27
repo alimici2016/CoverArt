@@ -1,8 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import Item from '../Item/Item';
+import PropTypes from 'prop-types';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Typography from '@mui/material/Typography';
+
 import './UserPage.css';
 
 
@@ -18,7 +29,10 @@ function UserPage() {
     dispatch({ type: 'FETCH_MOVIES' })
     dispatch({ type: 'FETCH_API_MOVIE' })
     dispatch({ type: 'FETCH_HISTORY' })
+    comparisonHistory();
   }, []);
+
+  const useMountedEffect = ((taco) => useEffect(taco, []))
 
   const current = new Date();
 
@@ -42,18 +56,100 @@ function UserPage() {
   let reversedHistory = historyDate.split('/').reverse().join('/')
   console.log('HISTORY', reversedHistory)
 
+  console.log(movieHistoryObject)
+
+  let comparison = {}
+
   const comparisonHistory = () => {
-    if (todayDateFlipped == reversedHistory) {
+    if (todayDateFlipped === reversedHistory) {
       console.log(movieHistoryObject)
-      return movieHistoryObject
-    };
+      comparison = movieHistoryObject
+      return comparison
+    } else {
+      console.log('nothing working')
+      return null;
+    }
+  };
+
+  comparisonHistory();
+
+  console.log('history of movie data', comparison)
+
+  const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+    '& .MuiDialogContent-root': {
+      padding: theme.spacing(2),
+    },
+    '& .MuiDialogActions-root': {
+      padding: theme.spacing(1),
+    },
+  }));
+
+  const BootstrapDialogTitle = (props) => {
+    const { children, onClose, ...other } = props;
+
+    return (
+      <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+        {children}
+        {onClose ? (
+          <IconButton
+            aria-label="close"
+            onClick={onClose}
+            sx={{
+              position: 'absolute',
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        ) : null}
+      </DialogTitle>
+    )
   }
-  console.log('history of movie data', movieHistoryObject)
+  BootstrapDialogTitle.propTypes = {
+    children: PropTypes.node,
+    onClose: PropTypes.func.isRequired,
+  };
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <>
       <div>
-        <p>{JSON.stringify(movieHistoryObject)}</p>
+        <Button variant="outlined" onClick={handleClickOpen}>
+          On This Day
+        </Button>
+        <BootstrapDialog
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={open}
+        >
+          <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+          </BootstrapDialogTitle>
+          <DialogContent dividers>
+            <Typography gutterBottom>
+              <img src={comparison.image_url} />
+            </Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={handleClose}>
+              Make an Impression
+            </Button>
+          </DialogActions>
+        </BootstrapDialog>
+      </div>
+
+      <div>
+        {useMountedEffect(handleClickOpen)}
+        <p>{JSON.stringify(comparisonHistory)}</p>
         <h2>Welcome, {user.username}!</h2>
         <h4 className="title">{date}</h4>
         <h4 className="title">This is your Movie Collection</h4>
@@ -68,5 +164,4 @@ function UserPage() {
     </>
   )
 };
-
 export default UserPage;
