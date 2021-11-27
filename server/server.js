@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const fetchMovieRouter = require('./routes/fetchMovie.router');
 const movieRouter = require('./routes/template.router.js')
 const searchRouter = require('./routes/search.router')
+const historyRouter = require('./routes/history.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/movies', movieRouter);
 app.use('/api/fetchMovies', fetchMovieRouter);
 app.use('/api/search', searchRouter);
+app.use('/api/history', historyRouter);
 
 // Serve static files
 app.use(express.static('build'));
