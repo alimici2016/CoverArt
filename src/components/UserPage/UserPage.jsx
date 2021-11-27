@@ -42,18 +42,18 @@ function UserPage() {
   let reversedHistory = historyDate.split('/').reverse().join('/')
   console.log('HISTORY', reversedHistory)
 
-  if (todayDateFlipped == reversedHistory){
+  const comparisonHistory = () => {
+    if (todayDateFlipped == reversedHistory) {
       console.log(movieHistoryObject)
-  };
-
-  console.log('history of movie data',  movieHistoryObject)
-
-  // console.log(comparisonDates)
+      return movieHistoryObject
+    };
+  }
+  console.log('history of movie data', movieHistoryObject)
 
   return (
     <>
       <div>
-        <p>{JSON.stringify(history)}</p>
+        <p>{JSON.stringify(movieHistoryObject)}</p>
         <h2>Welcome, {user.username}!</h2>
         <h4 className="title">{date}</h4>
         <h4 className="title">This is your Movie Collection</h4>
