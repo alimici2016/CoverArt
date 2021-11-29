@@ -129,9 +129,6 @@ function Wishlist() {
                     </DialogContent>
 
                     <DialogActions>
-                        <Button autoFocus onClick={handleClose}>
-                            Make an Impression
-                        </Button>
                     </DialogActions>
                 </BootstrapDialog>
             </div>

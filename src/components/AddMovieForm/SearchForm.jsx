@@ -26,6 +26,9 @@ function SearchForm() {
         setSearchMovie("");
     };
 
+    const handlePresentation = () => {
+        setSearchMovie('shang chi')
+    }
 
     return (
         <>
@@ -37,7 +40,7 @@ function SearchForm() {
                     type="text"
                     value={searchMovie}
                 />
-                <Button type="submit">Search</Button>
+                <Button onClick={handlePresentation} type="submit">Search</Button>
             </form>
 
             <div className="container">

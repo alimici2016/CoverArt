@@ -58,9 +58,10 @@ function AddMovieForm() {
             genre: 'Family',
             image_url: 'https://upload.wikimedia.org/wikipedia/en/0/0a/Inside_Out_%282015_film%29_poster.jpg',
             director: 'Pete Docter',
-            impressions: 'Great',
+            impressions: 'I really enjoyed this',
             description: 'Riley (Kaitlyn Dias) is a happy, hockey-loving 11-year-old Midwestern girl, but her world turns upside-down when she and her parents move to San Francisco. Rileys emotions -- led by Joy (Amy Poehler) -- try to guide her through this difficult, life-changing event. However, the stress of the move brings Sadness (Phyllis Smith) to the forefront. When Joy and Sadness are inadvertently swept into the far reaches of Rileys mind, the only emotions left in Headquarters are Anger, Fear and Disgust.',
-            like: 'false'
+            like: 'false',
+            streaming_service: 'Disney Plus',
         })
     };
 

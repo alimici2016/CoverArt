@@ -50,7 +50,7 @@ function UserPage() {
   for (let movieHistory of history) {
     console.log(movieHistory)
     historyDate = movieHistory.date.split('T')[0]
-    historyDate = historyDate.split('2018-')[1]
+    historyDate = historyDate.split('2002-')[1]
     movieHistoryObject = movieHistory
   }
   console.log(historyDate)
@@ -136,7 +136,7 @@ function UserPage() {
           aria-labelledby="customized-dialog-title"
           open={open}
         >
-          <h4>On this day!</h4>
+          <h4>Have you seen?</h4>
           <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
      
           </BootstrapDialogTitle>
@@ -148,7 +148,7 @@ function UserPage() {
 
           <DialogActions>
             <Button autoFocus onClick={handleClose}>
-              Make an Impression
+             Add to Collection
             </Button>
           </DialogActions>
         </BootstrapDialog>
@@ -159,7 +159,7 @@ function UserPage() {
         <p>{JSON.stringify(comparisonHistory)}</p>
         <h2>Welcome, {user.username}!</h2>
         <h4 className="title">{date}</h4>
-        <h4 className="title">This is your Movie Collection</h4>
+        <h4 className="title">Movie Collection</h4>
 
         <div className="container">
           {films.map((film => (
