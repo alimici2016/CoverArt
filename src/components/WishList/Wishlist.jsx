@@ -109,7 +109,6 @@ function Wishlist() {
                     aria-labelledby="customized-dialog-title"
                     open={open}
                 >
-                    <h4>Have you seen? {}</h4>
                     <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
     
                     </BootstrapDialogTitle>

@@ -22,7 +22,7 @@ function WishlistItem({ movie }) {
 
     const apiMovieImage = movie.poster_path
 
-    const movieImage = 'https://image.tmdb.org/t/p/w500' + apiMovieImage
+    let movieImage = ''
 
     const movieTitle = movie.title
 
@@ -33,19 +33,33 @@ function WishlistItem({ movie }) {
     }
 
     const movieDate = () => {
-        if (movie.release_date === null){
+        if (movie.release_date === null) {
             return null
-        }else if(movie.release_date){
+        } else if (movie.release_date) {
             movie.release_date.split('T')[0]
         }
     };
 
+    const posterFunction = () => {
+        if (apiMovieImage.length !== 32) {
+            movieImage = apiMovieImage
+            return movieImage
+        } else if (apiMovieImage.length === 32) {
+            movieImage = 'https://image.tmdb.org/t/p/w500' + apiMovieImage
+            return movieImage
+        }
+    }
+
+    posterFunction();
+
+    console.log(typeof apiMovieImage)
     return (
 
         <>
             <div className="container">
                 <Card sx={{ width: 350, margin: 2, padding: 5 }} className='card'>
-                    <div >
+                    <div>
+                        <h5>{movieTitle}</h5>
                         <CardMedia
                             className="card"
                             component="img"

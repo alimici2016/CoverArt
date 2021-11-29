@@ -31,7 +31,11 @@ function Item({ film }) {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const handleDelete = () => {
-        dispatch({ type: 'DELETE_MOVIE', payload: film })
+        if (confirm('Do you want to delete?')) {
+            dispatch({ type: 'DELETE_MOVIE', payload: film })
+           
+        } else {
+        }
     };
 
     const handleFlip = () => {
@@ -51,7 +55,7 @@ function Item({ film }) {
     const handleBack = () => {
         history.push('/home')
     }
-    
+
     const prime = film.streaming_service === 'Amazon Prime' && <CircleIcon sx={{ color: blue[700] }} />
     const hboMax = film.streaming_service === 'Hbo Max' && <CircleIcon sx={{ color: purple[700] }} />
     const criterion = film.streaming_service === 'Criterion' && <CircleIcon color="disabled" />
@@ -102,13 +106,13 @@ function Item({ film }) {
                             <h5> Genre: {film.genre}</h5>
                         </div>
                     </Tooltip>
-                            <CardContent></CardContent>
+                    <CardContent></CardContent>
                     <CardActions className="buttons">
                         <Button onClick={handleClick} size="small" align='center'>Impressions</Button>
                         <Button onClick={handleDelete} size="small" align='center'>Delete</Button>
                     </CardActions>
                 </Card>
-            </ReactCardFlip>
+            </ReactCardFlip> 
         </>
     )
 }
