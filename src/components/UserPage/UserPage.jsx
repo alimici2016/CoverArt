@@ -14,7 +14,9 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 
+
 import './UserPage.css';
+import { Tooltip } from '@mui/material';
 
 
 function UserPage() {
@@ -32,7 +34,7 @@ function UserPage() {
     comparisonHistory();
   }, []);
 
-  const useMountedEffect = ((taco) => useEffect(taco, []))
+  // const useMountedEffect = ((taco) => useEffect(taco, []))
 
   const current = new Date();
 
@@ -48,7 +50,7 @@ function UserPage() {
   for (let movieHistory of history) {
     console.log(movieHistory)
     historyDate = movieHistory.date.split('T')[0]
-    historyDate = historyDate.split('1990-')[1]
+    historyDate = historyDate.split('2018-')[1]
     movieHistoryObject = movieHistory
   }
   console.log(historyDate)
@@ -124,21 +126,26 @@ function UserPage() {
   return (
     <>
       <div>
-        <Button variant="outlined" onClick={handleClickOpen}>
-          On This Day
+        <Tooltip title="Mystery">
+        <Button variant="contained" onClick={handleClickOpen}>
+          On this day!⏱
         </Button>
+        </Tooltip>
         <BootstrapDialog
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
           open={open}
         >
+          <h4>On this day!</h4>
           <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+     
           </BootstrapDialogTitle>
           <DialogContent dividers>
             <Typography gutterBottom>
               <img src={comparison.image_url} />
             </Typography>
           </DialogContent>
+
           <DialogActions>
             <Button autoFocus onClick={handleClose}>
               Make an Impression
@@ -148,7 +155,7 @@ function UserPage() {
       </div>
 
       <div>
-        {useMountedEffect(handleClickOpen)}
+        {/* {useMountedEffect(handleClickOpen)} */}
         <p>{JSON.stringify(comparisonHistory)}</p>
         <h2>Welcome, {user.username}!</h2>
         <h4 className="title">{date}</h4>

@@ -75,22 +75,24 @@ function Detail() {
 
     return (
         <>
-
+         
+         <h2 className="title">Movie Impressions</h2>
         <Button onClick={handleBack}>Home</Button>
             <Paper elevation={4} 
             sx={{
                 mt: 10,
-                ml:40,
+                ml: 70,
                 width: 800,
                 height: 1500
                 
             }}>
                 <Table >
-                    <TableContainer sx={{ mt: 5, ml: 37}}>
+                    <TableContainer sx={{ mt: 5, ml: 35}}>
                         <TableHead >
                             <TableRow>
                                 <StyledTableCell>Date</StyledTableCell>
                                 <StyledTableCell>Impressions</StyledTableCell>
+                                <StyledTableCell>Delete</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody >
@@ -98,9 +100,7 @@ function Detail() {
                                 <TableRow key={impression.id}>
                                     <TableCell>{impression.date?.split('T')[0]}</TableCell>
                                     <TableCell>{impression.impressions}</TableCell>
-                                    <DeleteIcon sx={{mb:1}}fontSize='small' onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>Delete Impression</DeleteIcon>
-                                    {/* <button onClick={handleClickOpen}>
-                                    </button> */}
+                                   <Button> <DeleteIcon sx={{mb:1}}fontSize='small' onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>Delete Impression</DeleteIcon></Button>
                                 </TableRow>
                             )))}
                             <div>
