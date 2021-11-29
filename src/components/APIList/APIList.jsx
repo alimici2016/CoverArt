@@ -32,7 +32,7 @@ function APIList ({movie}) {
 
     return(
         <>
-        <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+        <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal" className="card">
         <div >
             <Card sx={{ width: 300, margin: 2, padding: 5 }} >
                 <div >
@@ -40,7 +40,7 @@ function APIList ({movie}) {
                 <CardMedia
                     className="card"
                     component="img"
-                    height="225"
+                    height="500"
                     margin='15'
                     image={movieImage}
                     onClick={handleFlip}

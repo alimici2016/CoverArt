@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import APIList from "../APIList/APIList";
@@ -25,24 +25,24 @@ function SearchForm() {
         dispatch({ type: "SEARCH_MOVIES", payload: searchMovie });
         setSearchMovie("");
     };
-    
+
 
     return (
         <>
             <form onSubmit={handleSearch}>
-            <TextField onChange={handleChange}
-                sx={{ m: 1 }}
-                id="outlined-basic"
-                label="Search"
-                type="text"
-                value={searchMovie}
+                <TextField onChange={handleChange}
+                    sx={{ m: 1 }}
+                    id="outlined-basic"
+                    label="Search"
+                    type="text"
+                    value={searchMovie}
                 />
                 <Button type="submit">Search</Button>
             </form>
 
-            <div>
+            <div className="container">
                 {film.map((movie => (
-                  <APIList key={movie.id} movie={movie}/>
+                    <APIList key={movie.id} movie={movie} />
                 )))}
             </div>
         </>

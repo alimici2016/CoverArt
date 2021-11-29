@@ -3,23 +3,6 @@
     position: relative;
 }
 
-/* .image_overlay{
-    position: absolute;
-    top: 0;
-    left: 10;
-    right: 80;
-    width: 73%;
-    height: 75%;
-    bottom: 20;
-    background: rgba(68, 54, 54, 0.7);
-    color: #ffffff;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity .25s;
-} */
  .image_overlay:hover{
     opacity: 1;
 }

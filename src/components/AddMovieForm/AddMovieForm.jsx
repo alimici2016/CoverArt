@@ -75,66 +75,52 @@ function AddMovieForm() {
                 style={{ minHeight: '30vh' }}
             >
                 <Button onClick={handleBack}>Home</Button>
-                <h2  onClick={fillIn}>ADD MOVIE</h2>
+                <h2 onClick={fillIn}>ADD MOVIE</h2>
                 <form onSubmit={addMovie}>
                     <FormControl
-                        sx={{width: '45ch'}}
-                        >
-                    <TextField onChange={(event) => handleChange(event, 'date')}
-                        sx={{ m: 1 }}
-                        type="date"
-                        value={movie.date}
-                    />
-                    <TextField onChange={(event) => handleChange(event, 'title')}
-                        sx={{ m: 1 }}
-                        id="contained-basic"
-                        label='Title'
-                        type="text"
-                        value={movie.title}
-                    />
+                        sx={{ width: '45ch' }}
+                    >
+                        <TextField onChange={(event) => handleChange(event, 'date')}
+                            sx={{ m: 1 }}
+                            type="date"
+                            value={movie.date}
+                        />
+                        <TextField onChange={(event) => handleChange(event, 'title')}
+                            sx={{ m: 1 }}
+                            id="contained-basic"
+                            label='Title'
+                            type="text"
+                            value={movie.title}
+                        />
 
-                    <TextField onChange={(event) => handleChange(event, 'director')}
-                        id="contained-basic"
-                        label='Director'
-                        sx={{ m: 1 }}
-                        type="text"
-                        value={movie.director}
-                    />
-                    <TextField onChange={(event) => handleChange(event, 'image_url')}
-                        id="contained-basic"
-                        helperText="(URL here)"
-                        sx={{ m: 1 }}
-                        label='Image'
-                        type="text"
-                        value={movie.image_url}
-                    />
+                        <TextField onChange={(event) => handleChange(event, 'director')}
+                            id="contained-basic"
+                            label='Director'
+                            sx={{ m: 1 }}
+                            type="text"
+                            value={movie.director}
+                        />
+                        <TextField onChange={(event) => handleChange(event, 'image_url')}
+                            id="contained-basic"
+                            helperText="(URL here)"
+                            sx={{ m: 1 }}
+                            label='Image'
+                            type="text"
+                            value={movie.image_url}
+                        />
                         <TextField onChange={(event) => handleChange(event, 'impressions')}
-                            id ="contained-basic"
+                            id="contained-basic"
                             multiline rows={10}
                             sx={{ m: 1 }}
                             label='Impression'
                             type="text"
                             value={movie.impressions}
                         />
-                    <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                    <Select  id ="outlined-basic" sx={{ m: 1, mr: 5 }}
-                        onChange={(event) => handleChange(event, 'streaming_service')}>
-                        <MenuItem value="">Choose Streaming Service</MenuItem>
-                        <MenuItem value='Theater'>Theater</MenuItem>
-                        <MenuItem value='Criterion'>Criterion</MenuItem>
-                        <MenuItem value='Hbo Max'>HBO Max</MenuItem>
-                        <MenuItem value='Netflix'>Netflix</MenuItem>
-                        <MenuItem value='Hulu'>Hulu</MenuItem>
-                        <MenuItem value='Disney Plus'>Disney Plus</MenuItem>
-                        <MenuItem value='Amazon Prime'>Amazon Prime</MenuItem>
-                        </Select>
-                        </InputLabel>
-                   
-                        <FormControl >
-                            <InputLabel  id="Genre" variant="standard" htmlFor="uncontrolled-native">
+                        <FormControl>
+                            <InputLabel id="Genre" variant="standard" htmlFor="uncontrolled-native">
                                 Genre
                             </InputLabel>
-                                <Select labelId="Genre"
+                            <Select labelId="Genre"
                                 onChange={(event) => handleChange(event, 'genre')}>
                                 <MenuItem value="">Choose Genre</MenuItem>
                                 <MenuItem value='Adventure'>Adventure</MenuItem>
@@ -152,9 +138,23 @@ function AddMovieForm() {
                                 <MenuItem value='Science Fiction'>Science Fiction</MenuItem>
                                 <MenuItem value='Space-Opera'>Space-Opera</MenuItem>
                                 <MenuItem value='Superhero'>Superhero</MenuItem>
+                            </Select>
+                            <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                                <Select id="outlined-basic" sx={{ mt: 10, mt: 0}}
+                                    onChange={(event) => handleChange(event, 'streaming_service')}>
+                                    <MenuItem value="">Choose Streaming Service</MenuItem>
+                                    <MenuItem value='Theater'>Theater</MenuItem>
+                                    <MenuItem value='Criterion'>Criterion</MenuItem>
+                                    <MenuItem value='Hbo Max'>HBO Max</MenuItem>
+                                    <MenuItem value='Netflix'>Netflix</MenuItem>
+                                    <MenuItem value='Hulu'>Hulu</MenuItem>
+                                    <MenuItem value='Disney Plus'>Disney Plus</MenuItem>
+                                    <MenuItem value='Amazon Prime'>Amazon Prime</MenuItem>
                                 </Select>
+                            </InputLabel>
+
                             <Button variant="contained" disabled={movie.impressions == '' || movie.title == ''} type="submit">Save</Button>
-                            <Button  disabled={movie.title == ''} onClick={wishlistMovie}>Add Wishlist</Button>
+                            <Button disabled={movie.title == ''} onClick={wishlistMovie}>Add Wishlist</Button>
                         </FormControl>
                     </FormControl>
                 </form>

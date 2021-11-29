@@ -18,7 +18,6 @@ function Wishlist() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_API_MOVIE' })
-
     }, []);
     const apiMovie = useSelector(store => store.apiReducer)
     // const apiMovie = useSelector(store => store.singleSearchMovie)
@@ -128,10 +127,12 @@ function Wishlist() {
                 </BootstrapDialog>
             </div>
 
-            {/* <h3 onClick={findMovie}>Welcome to your Wishlist</h3> */}
+            <h3>Welcome to your Wishlist</h3>
+            <div className="container">
             {apiMovie.map((movie => (
                 <WishlistItem key={movie.id} movie={movie} />
             )))}
+            </div>
         </>
     )
 }
