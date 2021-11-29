@@ -92,9 +92,19 @@ function Wishlist() {
 
     const apiMovieImage = randomMovie?.poster_path
 
-    const movieImage = 'https://image.tmdb.org/t/p/w500' + apiMovieImage
+    let movieImage = '';
 
-    
+    const posterFunction = () => {
+        if (apiMovieImage?.length !== 32) {
+            movieImage = apiMovieImage
+            return movieImage
+        } else if (apiMovieImage?.length === 32) {
+            movieImage = 'https://image.tmdb.org/t/p/w500' + apiMovieImage
+            return movieImage
+        }
+    };
+
+    posterFunction();
 
     return (
         <>
@@ -110,7 +120,7 @@ function Wishlist() {
                     open={open}
                 >
                     <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-    
+                    <h5>{apiMovie.title}</h5>
                     </BootstrapDialogTitle>
                     <DialogContent dividers>
                         <Typography gutterBottom>
