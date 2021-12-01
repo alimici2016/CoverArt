@@ -10,7 +10,7 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">TBD</h2>
+        <h2 className="nav-title">Movie Journal</h2>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
@@ -31,7 +31,7 @@ function Nav() {
               Add Movie
             </Link>
             <Link className="navLink" to="/search">
-              Search Movie
+              Most Popular Movies
             </Link>
             <Link className="navLink" to="/wishlist">
               Wish List

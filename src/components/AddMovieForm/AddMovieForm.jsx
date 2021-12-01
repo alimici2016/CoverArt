@@ -140,7 +140,7 @@ function AddMovieForm() {
                                 <MenuItem value='Space-Opera'>Space-Opera</MenuItem>
                                 <MenuItem value='Superhero'>Superhero</MenuItem>
                             </Select>
-                            <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                            {/* <InputLabel variant="standard" htmlFor="uncontrolled-native">
                                 <Select id="outlined-basic" sx={{ mt: 10, mt: 0}}
                                     onChange={(event) => handleChange(event, 'streaming_service')}>
                                     <MenuItem value="">Choose Streaming Service</MenuItem>
@@ -152,7 +152,7 @@ function AddMovieForm() {
                                     <MenuItem value='Disney Plus'>Disney Plus</MenuItem>
                                     <MenuItem value='Amazon Prime'>Amazon Prime</MenuItem>
                                 </Select>
-                            </InputLabel>
+                            </InputLabel> */}
 
                             <Button variant="contained" disabled={movie.impressions == '' || movie.title == ''} type="submit">Save</Button>
                             <Button disabled={movie.title == ''} onClick={wishlistMovie}>Add Wishlist</Button>

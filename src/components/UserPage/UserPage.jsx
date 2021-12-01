@@ -128,7 +128,7 @@ function UserPage() {
       <div>
         <Tooltip title="Mystery">
         <Button variant="contained" onClick={handleClickOpen}>
-          On this day!⏱
+          ⏱
         </Button>
         </Tooltip>
         <BootstrapDialog
@@ -159,7 +159,7 @@ function UserPage() {
         <p>{JSON.stringify(comparisonHistory)}</p>
         <h2>Welcome, {user.username}!</h2>
         <h4 className="title">{date}</h4>
-        <h4 className="title">Movie Collection</h4>
+        <h3 className="title">Movie Collection</h3>
 
         <div className="container">
           {films.map((film => (
