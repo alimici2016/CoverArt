@@ -112,6 +112,17 @@ function* postApiMovie(action) {
     }
 };
 
+function* movieHistory() {
+    try {
+       const response = yield axios.get('/api/history')
+        console.log('history', response.data)
+        yield put({type:'SET_HISTORY_MOVIE', payload: response.data})
+    } catch {
+        console.log('get movie history error');
+        yield put({ type: 'HISTORY_ERROR' })
+    }
+};
+
 function* MovieSaga() {
     yield takeLatest('FETCH_MOVIES', fetchMovies);
     yield takeLatest('ADD_MOVIE', addMovie);
@@ -123,6 +134,7 @@ function* MovieSaga() {
     yield takeLatest('SET_WISHLIST', wishList)
     yield takeLatest('FETCH_API_MOVIE', addMovieHome)
     yield takeLatest('ADD_API_MOVIE_TO_DB', postApiMovie)
+    yield takeLatest('FETCH_HISTORY', movieHistory)
 };
 
 export default MovieSaga;

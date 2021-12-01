@@ -1,3 +1,6 @@
 .tableBody{
     width: min-content;
 }
+.title{
+    text-align: center;
+}

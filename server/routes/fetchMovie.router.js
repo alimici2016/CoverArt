@@ -7,14 +7,10 @@ const {
 
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  // GET route code here
-  // SELECT FROM movies
-  // WHERE id = $1 AND
-  // user_id = $2;
-  // `;
-  // let values = [id, req.user.id]
+
   const query = ` SELECT * FROM "movies"
   ORDER BY "like" DESC;`;
+  // let values = [req.user.id]
   pool.query(query)
     .then(result => {
       res.send(result.rows);

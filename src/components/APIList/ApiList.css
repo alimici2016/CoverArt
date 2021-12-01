@@ -3,18 +3,11 @@
     box-shadow: .2px 4px 5px black;
     overflow: hidden;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: row;
     justify-content: center;
 }
 .container{
     display : flex;
-    flex-wrap: wrap;
+    flex-wrap: row;
     justify-content: center;
 }
-
-.movie-info{
-   text-align: center;
-   letter-spacing: .5;
-   justify-content: space-between; 
-}
-

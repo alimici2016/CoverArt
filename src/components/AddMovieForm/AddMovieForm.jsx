@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Input from '@mui/material/Input';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import Button from '@mui/material/Button';
-import  TextField from "@mui/material/TextField";
+import TextField from "@mui/material/TextField";
+import { Grid } from "@mui/material";
+
+
 
 function AddMovieForm() {
 
@@ -37,6 +41,13 @@ function AddMovieForm() {
         history.push('/')
     };
 
+    const wishlistMovie = (event) => {
+        event.preventDefault();
+        dispatch({ type: 'SET_WISHLIST', payload: movie })
+        setMovie('')
+        history.push('/wishlist')
+    };
+
     const handleBack = () => {
         history.push('/home')
     }
@@ -47,91 +58,108 @@ function AddMovieForm() {
             genre: 'Family',
             image_url: 'https://upload.wikimedia.org/wikipedia/en/0/0a/Inside_Out_%282015_film%29_poster.jpg',
             director: 'Pete Docter',
-            impressions: 'Great',
+            impressions: 'I really enjoyed this',
             description: 'Riley (Kaitlyn Dias) is a happy, hockey-loving 11-year-old Midwestern girl, but her world turns upside-down when she and her parents move to San Francisco. Rileys emotions -- led by Joy (Amy Poehler) -- try to guide her through this difficult, life-changing event. However, the stress of the move brings Sadness (Phyllis Smith) to the forefront. When Joy and Sadness are inadvertently swept into the far reaches of Rileys mind, the only emotions left in Headquarters are Anger, Fear and Disgust.',
-            like: 'false'
+            like: 'false',
+            streaming_service: 'Disney Plus',
         })
     };
 
     return (
         <>
-            <button onClick={fillIn}>Fill in </button>
-            <Button onClick={handleBack}>Home</Button>
-            <form onSubmit={addMovie}>
-                <Input onChange={(event) => handleChange(event, 'date')}
-                    type="date"
-                    value={movie.date}
-                />
-                <TextField onChange={(event) => handleChange(event, 'title')}
-                    placeholder='Title'
-                    type="text"
-                    value={movie.title}
-                />
-                
-                <TextField onChange={(event) => handleChange(event, 'director')}
-                    placeholder='Director'
-                    sx={{ ml: 30 }}
-                    type="text"
-                    value={movie.director}
-                />
-                <TextField onChange={(event) => handleChange(event, 'image_url')}
-                    multiline={true}
-                    rows={3}
-                    sx={{ mt: 20}}
-                    placeholder='Image'
-                    type="text"
-                    value={movie.image_url}
-                />
-                <div className="box">
-                <TextField onChange={(event) => handleChange(event, 'impressions')}
-                    multiline={true}
-                    rows={15}
-                    sx={{ mt: 0, ml: 50, width: .4, height: 60}}
-                    placeholder='Impression'
-                    type="text"
-                    value={movie.impressions}
-                />
-                </div>
-                <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                </InputLabel>
-                <NativeSelect
-                    onChange={(event) => handleChange(event, 'streaming_service')}>
-                    <option value="">Choose Streaming Service</option>
-                    <option value='Theater'>Theater</option>
-                    <option value='Criterion'>Criterion</option>
-                    <option value='Hbo Max'>HBO Max</option>
-                    <option value='Netflix'>Netflix</option>
-                    <option value='Hulu'>Hulu</option>
-                    <option value='Disney Plus'>Disney Plus</option>
-                    <option value='Amazon Prime'>Amazon Prime</option>
-                </NativeSelect>
-                <Box sx={{ minWidth: 1 }}>
-                    <FormControl >
-                        <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                        </InputLabel>
-                        <NativeSelect
-                            onChange={(event) => handleChange(event, 'genre')}>
-                            <option value="">Choose Genre</option>
-                            <option value='Adventure'>Adventure</option>
-                            <option value='Animated'>Animated</option>
-                            <option value='Biographical'>Biographical</option>
-                            <option value='Comedy'>Comedy</option>
-                            <option value='Crime'>Crime</option>
-                            <option value='Thriller'>Thriller</option>
-                            <option value='Disaster'>Disaster</option>
-                            <option value='Drama'>Drama</option>
-                            <option value='Epic'>Epic</option>
-                            <option value='Fantasy'>Fantasy</option>
-                            <option value='Musical'>Musical</option>
-                            <option value='Romantic'>Romantic</option>
-                            <option value='Science Fiction'>Science Fiction</option>
-                            <option value='Space-Opera'>Space-Opera</option>
-                            <option value='Superhero'>Superhero</option>
-                        </NativeSelect>
-                        <button disabled={movie.impressions == '' || movie.title == ''} type="submit">Save</button>
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                style={{ minHeight: '30vh' }}
+            >
+                <Button onClick={handleBack}>Home</Button>
+                <h2 onClick={fillIn}>ADD MOVIE</h2>
+                <form onSubmit={addMovie}>
+                    <FormControl
+                        sx={{ width: '45ch' }}
+                    >
+                        <TextField onChange={(event) => handleChange(event, 'date')}
+                            sx={{ m: 1 }}
+                            type="date"
+                            value={movie.date}
+                        />
+                        <TextField onChange={(event) => handleChange(event, 'title')}
+                            sx={{ m: 1 }}
+                            id="contained-basic"
+                            label='Title'
+                            type="text"
+                            value={movie.title}
+                        />
+
+                        <TextField onChange={(event) => handleChange(event, 'director')}
+                            id="contained-basic"
+                            label='Director'
+                            sx={{ m: 1 }}
+                            type="text"
+                            value={movie.director}
+                        />
+                        <TextField onChange={(event) => handleChange(event, 'image_url')}
+                            id="contained-basic"
+                            helperText="(URL here)"
+                            sx={{ m: 1 }}
+                            label='Image'
+                            type="text"
+                            value={movie.image_url}
+                        />
+                        <TextField onChange={(event) => handleChange(event, 'impressions')}
+                            id="contained-basic"
+                            multiline rows={10}
+                            sx={{ m: 1 }}
+                            label='Impression'
+                            type="text"
+                            value={movie.impressions}
+                        />
+                        <FormControl>
+                            <InputLabel id="Genre" variant="standard" htmlFor="uncontrolled-native">
+                                Genre
+                            </InputLabel>
+                            <Select labelId="Genre"
+                                onChange={(event) => handleChange(event, 'genre')}>
+                                <MenuItem value="">Choose Genre</MenuItem>
+                                <MenuItem value='Adventure'>Adventure</MenuItem>
+                                <MenuItem value='Animated'>Animated</MenuItem>
+                                <MenuItem value='Biographical'>Biographical</MenuItem>
+                                <MenuItem value='Comedy'>Comedy</MenuItem>
+                                <MenuItem value='Crime'>Crime</MenuItem>
+                                <MenuItem value='Thriller'>Thriller</MenuItem>
+                                <MenuItem value='Disaster'>Disaster</MenuItem>
+                                <MenuItem value='Drama'>Drama</MenuItem>
+                                <MenuItem value='Epic'>Epic</MenuItem>
+                                <MenuItem value='Fantasy'>Fantasy</MenuItem>
+                                <MenuItem value='Musical'>Musical</MenuItem>
+                                <MenuItem value='Romantic'>Romantic</MenuItem>
+                                <MenuItem value='Science Fiction'>Science Fiction</MenuItem>
+                                <MenuItem value='Space-Opera'>Space-Opera</MenuItem>
+                                <MenuItem value='Superhero'>Superhero</MenuItem>
+                            </Select>
+                            {/* <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                                <Select id="outlined-basic" sx={{ mt: 10, mt: 0}}
+                                    onChange={(event) => handleChange(event, 'streaming_service')}>
+                                    <MenuItem value="">Choose Streaming Service</MenuItem>
+                                    <MenuItem value='Theater'>Theater</MenuItem>
+                                    <MenuItem value='Criterion'>Criterion</MenuItem>
+                                    <MenuItem value='Hbo Max'>HBO Max</MenuItem>
+                                    <MenuItem value='Netflix'>Netflix</MenuItem>
+                                    <MenuItem value='Hulu'>Hulu</MenuItem>
+                                    <MenuItem value='Disney Plus'>Disney Plus</MenuItem>
+                                    <MenuItem value='Amazon Prime'>Amazon Prime</MenuItem>
+                                </Select>
+                            </InputLabel> */}
+
+                            <Button variant="contained" disabled={movie.impressions == '' || movie.title == ''} type="submit">Save</Button>
+                            <Button disabled={movie.title == ''} onClick={wishlistMovie}>Add Wishlist</Button>
+                        </FormControl>
                     </FormControl>
-                </Box >
-            </form>
+                </form>
+            </Grid>
         </>
     )
 };

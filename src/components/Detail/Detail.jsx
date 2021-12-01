@@ -18,6 +18,10 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+
+
 import './Detail.css'
 
 
@@ -59,93 +63,73 @@ function Detail() {
         })
     };
 
-    const StyledTableCell = styled(TableCell)(({ theme }) => ({
-        [`&.${tableCellClasses.head}`]: {
-            backgroundColor: theme.palette.common.white,
-            color: theme.palette.common.lavender,
-        },
-        [`&.${tableCellClasses.body}`]: {
-            fontSize: 25,
-        },
-    }));
-
     const handleBack = () => {
         history.push('/home')
+    }
+
+    const handlePresentation = () => {
+        setNewImpression({
+            impression: 'Second watch rivals the first what an incredible way to stick your finger at folks who are so quick to through away lives for a false sense of pride! This is definitely top 5 all time! '
+        })
     }
 
     return (
         <>
 
-        <Button onClick={handleBack}>Home</Button>
-            <Paper elevation={4} 
-            sx={{
-                mt: 10,
-                ml:40,
-                width: 800,
-                height: 1500
-                
-            }}>
-                <Table >
-                    <TableContainer sx={{ mt: 5, ml: 37}}>
-                        <TableHead >
-                            <TableRow>
-                                <StyledTableCell>Date</StyledTableCell>
-                                <StyledTableCell>Impressions</StyledTableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody >
-                            {impressions.map((impression => (
-                                <TableRow key={impression.id}>
-                                    <TableCell>{impression.date?.split('T')[0]}</TableCell>
-                                    <TableCell>{impression.impressions}</TableCell>
-                                    <DeleteIcon sx={{mb:1}}fontSize='small' onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>Delete Impression</DeleteIcon>
-                                    {/* <button onClick={handleClickOpen}>
-                                    </button> */}
-                                </TableRow>
-                            )))}
-                            <div>
-                                <Dialog open={open} onClose={handleClose}>
-                                    <DialogTitle>Edit Your Impression</DialogTitle>
-                                    <DialogContent>
-                                        <TextField
-                                            autoFocus
-                                            margin="dense"
-                                            id="name"
-                                            label="impression"
-                                            type="email"
-                                            fullWidth
-                                            variant="standard"
-                                        />
-                                    </DialogContent>
-                                    <DialogActions>
-                                        <Button onClick={handleClose}>Cancel</Button>
-                                        <Button>Submit</Button>
-                                    </DialogActions>
-                                </Dialog>
-                            </div>
-                        </TableBody>
-                    </TableContainer>
-                </Table>
+            <h2 className="title" onClick={handlePresentation}>Movie Impressions</h2>
+            <Button onClick={handleBack}>Home</Button>
 
-                <div>
-                    <form onSubmit={addNewImpression}>
-                        <Input onChange={(event) => handleChange(event, 'date') }
-                            sx={{ mt: 9, ml: 36, width: .3 }}
+            {impressions.map((impression => (
+                <Paper sx={{ p: 2, margin: 'auto', maxWidth: 500, flexGrow: 1, mb: 5 }}>
+                    <Grid container spacing={2} key={impression.id}>
+                        <Grid item>
+                        </Grid>
+                        <Grid item xs={12} sm container>
+                            <Grid item xs container direction="column" spacing={2}>
+                                <Grid item xs>
+                                    <Typography gutterBottom variant="subtitle1" component="div">
+                                        <h4>Impression:</h4>{impression.impressions}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                    </Typography>
+                                </Grid>
+                                <Grid item>
+                                </Grid>
+                            </Grid>
+                            <Grid item>
+                                <Typography variant="subtitle1" component="div">
+                                    Date: {impression.date.split('T')[0]}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Button sx={{ mr: 5 }} fontSize='small' onClick={() => dispatch({ type: 'DELETE_IMPRESSION', payload: impression })}>Delete Impression</Button>
+                </Paper>
+            )))}
+
+            <div>
+                <form onSubmit={addNewImpression}>
+                    <Grid>
+                        <Input onChange={(event) => handleChange(event, 'date')}
+                            sx={{ mb: 5, mt: 0, ml: 78, width: .1 }}
                             type="date"
                             value={newImpression.date}
                         />
+
+                    </Grid>
+                    <Grid>
                         <TextField onChange={(event) => handleChange(event, 'impression')}
                             multiline={true}
-                            rows={14}
-                            sx={{ mt: 1, ml: 16, width: .7, height: 100}}
+                            rows={5}
+                            sx={{ ml: 65, mb: 80, mt: 0, width: .3, height: 100 }}
                             placeholder='impression'
                             type="text"
                             value={newImpression.impression}
                         />
                         <Button disabled={newImpression.impression.length < 1 || newImpression.impression == ''} type="submit">Save</Button>
-                    </form>
-                </div>
-            </Paper>
+                    </Grid>
+                </form>
+            </div>
         </>
     )
 };

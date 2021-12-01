@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardMedia from '@mui/material/CardMedia';
@@ -9,14 +10,17 @@ import { useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CircleIcon from '@mui/icons-material/Circle';
-import { red } from '@mui/material/colors';
+import { purple, red } from '@mui/material/colors';
 import { orange } from '@mui/material/colors';
 import { blue } from '@mui/material/colors';
 import Tooltip from '@mui/material/Tooltip';
 import './Item.css'
+import { CardContent } from "@mui/material";
 
 
 function Item({ film }) {
+
+    const impressions = useSelector(store => store.SingleMovieImpression);
 
     const dispatch = useDispatch();
 
@@ -27,7 +31,11 @@ function Item({ film }) {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const handleDelete = () => {
-        dispatch({ type: 'DELETE_MOVIE', payload: film })
+        if (confirm('Do you want to delete?')) {
+            dispatch({ type: 'DELETE_MOVIE', payload: film })
+           
+        } else {
+        }
     };
 
     const handleFlip = () => {
@@ -47,9 +55,9 @@ function Item({ film }) {
     const handleBack = () => {
         history.push('/home')
     }
-    
-    const prime = film.streaming_service === 'Amazon Prime' && <CircleIcon color="primary" />
-    const hboMax = film.streaming_service === 'Hbo Max' && <CircleIcon color="secondary" />
+
+    const prime = film.streaming_service === 'Amazon Prime' && <CircleIcon sx={{ color: blue[700] }} />
+    const hboMax = film.streaming_service === 'Hbo Max' && <CircleIcon sx={{ color: purple[700] }} />
     const criterion = film.streaming_service === 'Criterion' && <CircleIcon color="disabled" />
     const hulu = film.streaming_service === 'Hulu' && <CircleIcon color="success" />
     const theater = film.streaming_service === 'Theater' && <CircleIcon sx={{ color: [500] }} />
@@ -57,18 +65,18 @@ function Item({ film }) {
     const disneyPlus = film.streaming_service == 'Disney Plus' && <CircleIcon sx={{ color: blue[900] }} />
     const nullMovie = film.streaming_service == 'null' && <CircleIcon sx={{ color: orange[700] }} />
 
+
     return (
         <>
             <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
                 <div >
-                    <Card sx={{ width: 300, margin: 2, padding: 5 }} >
+                    <Card sx={{ width: 350, margin: 2, padding: 5 }} onClick={handleFlip}>
                         <div>
                             <h6> {film.title}</h6>
                             <div className="card" >
                                 <CardMedia
-                                    className="image"
                                     component="img"
-                                    height="225"
+                                    height="500"
                                     margin='15'
                                     image={film.image_url}
                                 />
@@ -98,12 +106,13 @@ function Item({ film }) {
                             <h5> Genre: {film.genre}</h5>
                         </div>
                     </Tooltip>
+                    <CardContent></CardContent>
                     <CardActions className="buttons">
                         <Button onClick={handleClick} size="small" align='center'>Impressions</Button>
                         <Button onClick={handleDelete} size="small" align='center'>Delete</Button>
                     </CardActions>
                 </Card>
-            </ReactCardFlip>
+            </ReactCardFlip> 
         </>
     )
 }
